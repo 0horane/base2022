@@ -1,0 +1,23 @@
+mostrar los nombred de los empleados cuyos nombres terminen con la letra o
+seleccionar el nombre, cargo y salario de los empleados que trabajen como vendedores.
+calcular el salario medio de todos los empleados.
+cual es el maximo salario de los empleados del departamento 10
+visualizar cuantos nombres de los empleados empiezan con la letra a
+para cada cargo, obtener la suma de los salarios.
+listar los empleados cuya fecha de alta este entre un rango de fechas y sean del departamento de contabilidad
+
+
+--SELECT nombre FROM empleado WHERE nombre LIKE '%o';
+
+
+--SELECT cargo, nombre, salario FROM empleado WHERE cargo='vendedor';
+
+--SELECT AVG(salario) FROM empleado;
+
+--SELECT MIN(salario) FROM empleado WHERE nro_dpto = 10;
+
+--SELECT COUNT(*) FROM empleado WHERE nombre LIKE 'A%';
+
+--SELECT cargo, SUM(salario) from empleado GROUP BY cargo;
+
+SELECT * FROM empleado WHERE fecha_alta BETWEEN '2019-1-1' AND '2020-1-1' AND nro_dpto = 3;
