@@ -1,0 +1,59 @@
+1) SELECT * FROM tabla WHERE condicion
+2)UPDATE tabla SET campo = nuevovalor WHERE cpndicion
+3) DELETE FROM tabla WHERE condicion
+4) insert
+5) MAX(campo)
+6) MIN(Camplo)
+7) COUNT, COUNT(X)
+8) SUM(campo)
+9) LIKE
+10) AVG(campo)
+11) BETWEEN
+12) ORDER BY campo, asc desc
+13)group by
+14) distinct
+
+mostrar todos los nombres cuya edad sea igual a 30
+mostrar todas las ventas mayores a 10000 pesos
+sumarle 150 pesos a las ventas de juan
+restarle 30 pesos a las ventas de pedro
+encontrar la venta maxima
+mostrar la venta minima
+mostrar el promedio de ventas
+mostrar la suma de todas las ventas
+mostrar el nombre y apellido de los vendedores cuyas ventas sean iguales o superiores a 20000 pesos
+mostrar las ventas que se encuentran entre 1500 y 3000 pesos
+mostrar la cantidad de ventas inferiores a 30000 pesos
+obtener todos los registros sin repeticion de apellidos
+obtener todos los registros ordenados en forma ascendente por ventas
+actualizar en un 20% las ventas que se encuentren entre 10000 y 15000 pesos
+
+
+--SELECT nombre FROM empresa WHERE edad = 30
+
+--SELECT ventas FROM empresa WHERE ventas > 10000
+
+--UPDATE empresa SET ventas = ventas+150 WHERE nombre = 'Juan'
+
+--UPDATE empresa SET ventas = ventas-30 WHERE nombre = 'Pedro'
+
+--SELECT MAX(ventas) FROM empresa
+
+--SELECT MIN(ventas) FROM empresa
+
+--SELECT AVG(ventas) FROM empresa
+
+--SELECT SUM(ventas) FROM empresa
+
+--SELECT nombre, apellido FROM empresa WHERE ventas >= 20000
+
+--SELECT ventas FROM empresa WHERE ventas BETWEEN 1500 AND 3000
+
+--SELECT COUNT(ventas) FROM empresa WHERE ventas < 30000
+
+--SELECT DISTINCT apellido FROM empresa 
+
+--SELECT * FROM empresa ORDER BY ventas ASC
+
+
+--UPDATE empresa SET ventas = ventas*1.20 WHERE ventas BETWEEN 10000 AND 15000
