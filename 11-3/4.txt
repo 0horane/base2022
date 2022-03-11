@@ -1,0 +1,26 @@
+seleccionar el nombre, cargo, y localidad de los empleados que trabajan de vendedores
+seleccionar el bombre, salario y localidad  donde trabajan los empleados que tengan un salario entre un rango
+mostrar el nombre, salario y nombre del departamento de los empleados que tengan el mismo cargo de vendedor
+mostrar el nombre, salario y el nombre del departamento de los empleados que tengn el mismo salario de un valor
+mostrar los datos de los empleados que trabajan en el departamento de contabilidad ordenados por nombre
+calcular el promedio del salario de los empleados del departamento de contabilidad
+indicar cuantos empleados hay en el departamento de ventas.
+mostrar codigo de empleados, edad, y cargo de los empleados cuya localidad sea capital federal.
+
+--select nombre, cargo, localidad from empleado inner join departamento on empleado.nro_dpto = departamento.nro_dpto where cargo = 'vendedor'
+
+--select nombre, salario, localidad from empleado inner join departamento on empleado.nro_dpto = departamento.nro_dpto where salario between 30000 AND 50000
+
+--select nombre, salario, nombre_dpto from empleado inner join departamento on empleado.nro_dpto = departamento.nro_dpto where cargo = 'vendedor'
+
+--select nombre, salario, nombre_dpto from empleado inner join departamento on empleado.nro_dpto = departamento.nro_dpto where salario=4
+
+--select * from empleado inner join departamento on empleado.nro_dpto = departamento.nro_dpto where nombre_dpto = 'Contabilidad' order by nombre asc
+
+--select avg(salario) from empleado inner join departamento on empleado.nro_dpto = departamento.nro_dpto where nombre_dpto='Contabilidad'
+
+--select count(*) from empleado inner join departamento on empleado.nro_dpto = departamento.nro_dpto where nombre_dpto='Ventas'
+
+select cod_empl, edad, cargo from empleado inner join departamento on empleado.nro_dpto = departamento.nro_dpto where localidad='Buenos Aires'
+
+
