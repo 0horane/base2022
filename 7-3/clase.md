@@ -71,46 +71,53 @@ Clasificar los siguientes sistemass
 
   
   
-sistema
+**sistema**
 : conjunto organizado de cosas o partes interactuantes de interdependientes que se relacionan con un todo orgnaizado unitario y complejo. Esas cosas o partes se pueden enumerar en entradas, proesos y salidas.
 
-entradas
+**entradas**
 : son los ingresos del sistema que pueden ser recursos materiales, humanos o informacion
 
-proceso
+**proceso**
 : es lo que transforma una entrada en salida. por lo tanto puede ser una maquina, un individuo, una computadora, un producto quimico, etc.
 
-caja negra
+**caja negra**
 : se utiliza para representar a los sistemas cuando no sabemos que elementos o cosas componen al sistema o proceso, pero sabemos que a determinadas entradas corresponden determinadas salidas.
 
-salidas
+**salidas**
 : las salidas de los sistemas son los resultados que se obtienen de procesar las entradas. Al igual que las entradas estas pueden adoptar la forma de productos, servicios e informacion. 
 
 Las salidas de un sistema se convierten en untrada de otro, que la procesa para convertirla en otra salida repitiendo este ciclo indefinidamente.
 
-contexto o ambiente
+**contexto o ambiente**
 : un sistema siempre estara relacionado con el contexto que lo rodea, o sea, el conjunto de objetos exteriores al sistema pero que influyen decididamente a este y a su vez el sistema influye, aunque en una menor proporcion sobre el contexto.   
 
 Determinar el limite de interes es fundamental para marcar el foco de analisis, puesto que solo sera considerado lo que quede dentro de ese limite.
   
-subsistemas
+**subsistemas**
 : Se hace referencia a los subsistemas que lo componen, cuando se indica que el mismo esta formado por partes o cosas que forman el todo. Estos conjuntos o partes pueden ser a su vez sistemas ya que onforman un todo en si mismo y serian de un rango inferior al sistema que lo compone.
   
-retroalimentacion
+**retroalimentacion**
 : se produce cuando las salidas del sistema con la influencia de las salidas del sistema en el contexto vuelvena ingresar al sistema en forma de recursos o informacion. La retroalimentacion permite el control de un sistema y que el mismi tome medidas de correccion en base a la informacion retroalimentada.
 
-homeostasis
+**homeostasis**
 : es la propiedad de un sistema que define su nivel de respuesta y de adaptacion al contexto. Es el nivel de adaptacion permanente del sistema por su tendencia a la supervivencia dinamica.
 
-entropia
+**entropia**
 : es el desgaste del sistema presenta por el transcurso de tiempo o por el funcionamiento del mismo
   
-permeabilidad
+**permeabilidad**
 : mide la interaccion que este reibe del medio, te dice que a mayor o menor permeabilidad del sistema sera mas o menos abierto. Los sistemas que tienen mucha relacion con el medio en el cual se desarrollan, son sistemas altamente permeables. 
   
 A partir de esto se pueden clasificar los sistemas en  
-abiertos
+**abiertos**
 : son sistemas que tienen altos grados de permeabilidad, es decir, estan relacionados con su ambiente.  
-Cerrados
+**Cerrados**
 : no intercambian nada con el ambiente y por lo tanto no son permeables.
 
+
+
+**Equifinalidad**
+: sugiere que ciertos resultados podran ser alcanzados con diferentes condiciones iniciales y por medios diferentes. Significa poder llegar a lo mismo por diferentes caminos.
+
+**Adapatabilidad**
+: es la propiedad que tiene un sistema de aprender y modificar un proceso, un estado o una caracteristica de acuerdo a las modificaciones que sufren contexto.
