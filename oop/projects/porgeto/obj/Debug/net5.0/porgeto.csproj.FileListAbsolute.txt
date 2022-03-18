@@ -1,0 +1,16 @@
+C:\Users\Alumno\source\repos\orane\porgeto\bin\Debug\net5.0\porgeto.exe
+C:\Users\Alumno\source\repos\orane\porgeto\bin\Debug\net5.0\porgeto.deps.json
+C:\Users\Alumno\source\repos\orane\porgeto\bin\Debug\net5.0\porgeto.runtimeconfig.json
+C:\Users\Alumno\source\repos\orane\porgeto\bin\Debug\net5.0\porgeto.runtimeconfig.dev.json
+C:\Users\Alumno\source\repos\orane\porgeto\bin\Debug\net5.0\porgeto.dll
+C:\Users\Alumno\source\repos\orane\porgeto\bin\Debug\net5.0\ref\porgeto.dll
+C:\Users\Alumno\source\repos\orane\porgeto\bin\Debug\net5.0\porgeto.pdb
+C:\Users\Alumno\source\repos\orane\porgeto\obj\Debug\net5.0\porgeto.csproj.AssemblyReference.cache
+C:\Users\Alumno\source\repos\orane\porgeto\obj\Debug\net5.0\porgeto.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alumno\source\repos\orane\porgeto\obj\Debug\net5.0\porgeto.AssemblyInfoInputs.cache
+C:\Users\Alumno\source\repos\orane\porgeto\obj\Debug\net5.0\porgeto.AssemblyInfo.cs
+C:\Users\Alumno\source\repos\orane\porgeto\obj\Debug\net5.0\porgeto.csproj.CoreCompileInputs.cache
+C:\Users\Alumno\source\repos\orane\porgeto\obj\Debug\net5.0\porgeto.dll
+C:\Users\Alumno\source\repos\orane\porgeto\obj\Debug\net5.0\ref\porgeto.dll
+C:\Users\Alumno\source\repos\orane\porgeto\obj\Debug\net5.0\porgeto.pdb
+C:\Users\Alumno\source\repos\orane\porgeto\obj\Debug\net5.0\porgeto.genruntimeconfig.cache
