@@ -36,5 +36,14 @@ Nota: indicar aquellos datos que consideras necesarios y no están ene le texto
 4) Armado, distribución y comercialización de productos electrónicos
 5) Representante exclusivo de *Audix*.
 6) 3500 comerciantes en todo el pais
-7)
-8) 
+7) ![organigrama](grafico_ejercicio_analisis.png)
+8) Argentinos que quieren productos electronicos de origen Japones y Coreano.
+9) Mas que 3500, que es la cantidad de vendedores.
+10) El gerente general se encarga de la distribucion de las compras y ventas, y las analiza.
+El directorio analiza y apreuba los productos nuevos, estrategias de comercialización, y compras del exterior
+La gerencia de publicidad estudia el mercado, se comunica con los medios, y arma campañas de publicidad.
+La gerencia comericial administra a todos los vendedores y hace registros de venta, y gestiona un sistema de informacion para los vendedores.
+La gerencia de Administracion, finanzas, y control de gestion administra temas de impuestos, facturacion, cuentas bancarias, y atiende problemas de comerciantes
+El Departamento de Créditos y Cobranzas supervisa compras y registros de comercializacion.
+La Gerencia Industrial administra una nueva planta y se asegura de su calidad.
+11) Mejorar el sistema de ventas computadorizado para permitir el mas facil comunicado entre las diferentes gerencias de la empresas. Les serviria un sistema centralizado de registro de todas las compras y ventas y temas financieros. Se debe resolver los problemas que indiquen los expertos de la casa central.
