@@ -1,0 +1,15 @@
+D:\Documents\projects\escuela2022\oop\tarea002\Ej1t2\Ej1t2\bin\Debug\net6.0\Ej1t2.exe
+D:\Documents\projects\escuela2022\oop\tarea002\Ej1t2\Ej1t2\bin\Debug\net6.0\Ej1t2.deps.json
+D:\Documents\projects\escuela2022\oop\tarea002\Ej1t2\Ej1t2\bin\Debug\net6.0\Ej1t2.runtimeconfig.json
+D:\Documents\projects\escuela2022\oop\tarea002\Ej1t2\Ej1t2\bin\Debug\net6.0\Ej1t2.dll
+D:\Documents\projects\escuela2022\oop\tarea002\Ej1t2\Ej1t2\bin\Debug\net6.0\Ej1t2.pdb
+D:\Documents\projects\escuela2022\oop\tarea002\Ej1t2\Ej1t2\obj\Debug\net6.0\Ej1t2.csproj.AssemblyReference.cache
+D:\Documents\projects\escuela2022\oop\tarea002\Ej1t2\Ej1t2\obj\Debug\net6.0\Ej1t2.GeneratedMSBuildEditorConfig.editorconfig
+D:\Documents\projects\escuela2022\oop\tarea002\Ej1t2\Ej1t2\obj\Debug\net6.0\Ej1t2.AssemblyInfoInputs.cache
+D:\Documents\projects\escuela2022\oop\tarea002\Ej1t2\Ej1t2\obj\Debug\net6.0\Ej1t2.AssemblyInfo.cs
+D:\Documents\projects\escuela2022\oop\tarea002\Ej1t2\Ej1t2\obj\Debug\net6.0\Ej1t2.csproj.CoreCompileInputs.cache
+D:\Documents\projects\escuela2022\oop\tarea002\Ej1t2\Ej1t2\obj\Debug\net6.0\Ej1t2.dll
+D:\Documents\projects\escuela2022\oop\tarea002\Ej1t2\Ej1t2\obj\Debug\net6.0\refint\Ej1t2.dll
+D:\Documents\projects\escuela2022\oop\tarea002\Ej1t2\Ej1t2\obj\Debug\net6.0\Ej1t2.pdb
+D:\Documents\projects\escuela2022\oop\tarea002\Ej1t2\Ej1t2\obj\Debug\net6.0\Ej1t2.genruntimeconfig.cache
+D:\Documents\projects\escuela2022\oop\tarea002\Ej1t2\Ej1t2\obj\Debug\net6.0\ref\Ej1t2.dll
