@@ -1,0 +1,15 @@
+C:\Users\Alumno\orane\escuela2022\oop\Ejerc004-Programando con Objetos\Ejerc004-Programando con Objetos\bin\Debug\net6.0\Ejerc004-Programando con Objetos.exe
+C:\Users\Alumno\orane\escuela2022\oop\Ejerc004-Programando con Objetos\Ejerc004-Programando con Objetos\bin\Debug\net6.0\Ejerc004-Programando con Objetos.deps.json
+C:\Users\Alumno\orane\escuela2022\oop\Ejerc004-Programando con Objetos\Ejerc004-Programando con Objetos\bin\Debug\net6.0\Ejerc004-Programando con Objetos.runtimeconfig.json
+C:\Users\Alumno\orane\escuela2022\oop\Ejerc004-Programando con Objetos\Ejerc004-Programando con Objetos\bin\Debug\net6.0\Ejerc004-Programando con Objetos.dll
+C:\Users\Alumno\orane\escuela2022\oop\Ejerc004-Programando con Objetos\Ejerc004-Programando con Objetos\bin\Debug\net6.0\Ejerc004-Programando con Objetos.pdb
+C:\Users\Alumno\orane\escuela2022\oop\Ejerc004-Programando con Objetos\Ejerc004-Programando con Objetos\obj\Debug\net6.0\Ejerc004-Programando con Objetos.csproj.AssemblyReference.cache
+C:\Users\Alumno\orane\escuela2022\oop\Ejerc004-Programando con Objetos\Ejerc004-Programando con Objetos\obj\Debug\net6.0\Ejerc004-Programando con Objetos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alumno\orane\escuela2022\oop\Ejerc004-Programando con Objetos\Ejerc004-Programando con Objetos\obj\Debug\net6.0\Ejerc004-Programando con Objetos.AssemblyInfoInputs.cache
+C:\Users\Alumno\orane\escuela2022\oop\Ejerc004-Programando con Objetos\Ejerc004-Programando con Objetos\obj\Debug\net6.0\Ejerc004-Programando con Objetos.AssemblyInfo.cs
+C:\Users\Alumno\orane\escuela2022\oop\Ejerc004-Programando con Objetos\Ejerc004-Programando con Objetos\obj\Debug\net6.0\Ejerc004-Programando con Objetos.csproj.CoreCompileInputs.cache
+C:\Users\Alumno\orane\escuela2022\oop\Ejerc004-Programando con Objetos\Ejerc004-Programando con Objetos\obj\Debug\net6.0\Ejerc004-Programando con Objetos.dll
+C:\Users\Alumno\orane\escuela2022\oop\Ejerc004-Programando con Objetos\Ejerc004-Programando con Objetos\obj\Debug\net6.0\refint\Ejerc004-Programando con Objetos.dll
+C:\Users\Alumno\orane\escuela2022\oop\Ejerc004-Programando con Objetos\Ejerc004-Programando con Objetos\obj\Debug\net6.0\Ejerc004-Programando con Objetos.pdb
+C:\Users\Alumno\orane\escuela2022\oop\Ejerc004-Programando con Objetos\Ejerc004-Programando con Objetos\obj\Debug\net6.0\Ejerc004-Programando con Objetos.genruntimeconfig.cache
+C:\Users\Alumno\orane\escuela2022\oop\Ejerc004-Programando con Objetos\Ejerc004-Programando con Objetos\obj\Debug\net6.0\ref\Ejerc004-Programando con Objetos.dll
