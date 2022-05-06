@@ -43,9 +43,12 @@ namespace Ejerc004_Programando_con_Objetos
                 {
                     for (int j = 0; j < 80; j++)
                     {
-                        if (Math.Round(this.posX) == i-20 && Math.Round(this.posY) == j-40)
+                        if (Math.Round(this.posY) == i-20 && Math.Round(this.posX) == j-40)
                         {
                             Console.Write("X");
+                        } else if (Math.Round(this.posY+ Math.Sin(direccion) * 3) == i - 20 && Math.Round(this.posX + Math.Cos(direccion) * 3) == j - 40)
+                        {
+                            Console.Write(".");
                         } else
                         {
                             Console.Write(" ");
@@ -93,7 +96,7 @@ namespace Ejerc004_Programando_con_Objetos
         public void Girar()
         {
             
-            this.direccion = this.overflow(this.direccion-0.02, -0.9999999999999999, 1);
+            this.direccion -= 0.4;
             this.iter();
         }
     }
