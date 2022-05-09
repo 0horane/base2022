@@ -1,4 +1,4 @@
-﻿namespace Ej3
+﻿namespace TextEditor
 {
     class Program
     {
@@ -8,7 +8,7 @@
         static void Main(string[] args)
         {
 
-
+            Tab currenttab = new Tab(); 
 
             ConsoleKeyInfo pkey;
             do
@@ -18,28 +18,37 @@
                 switch (pkey.Key)
                 {
                     case ConsoleKey.Enter:
-                        currenttab.newline();
-                        break
+                        currenttab.add("\n");
+                        break;
                     case ConsoleKey.Escape:
-                        currenttab.esc()
+                        currenttab.esc();
+                        break;
                     case ConsoleKey.Tab:
                         currenttab.add("    ");
+                        break;
                     case ConsoleKey.Backspace:
                         currenttab.rm(-1);
+                        break;
                     case ConsoleKey.Delete:
-                        currenttab.rm(-1);
+                        currenttab.rm(1);
+                        break;
                     case ConsoleKey.RightArrow:
-                        currenttab.movecur(1, 0);
+                        currenttab.movecurX(1);
+                        break;
                     case ConsoleKey.LeftArrow:
-                        currenttab.movecur(-1, 0);
+                        currenttab.movecurX(-1);
+                        break;
                     case ConsoleKey.UpArrow:
-                        currenttab.movecur(0, -1);
+                        currenttab.movecurY(-1);
+                        break;
                     case ConsoleKey.DownArrow:
-                        currenttab.movecur(0, 1);
+                        currenttab.movecurY(1);
+                        break;
                     default:
-                        currenttab.add(pkey.KeyChar);
+                        currenttab.add(pkey.KeyChar.ToString());
+                        break;
                 }
-                currenttab.render();
+                currenttab.testrender();
 
             } while (true);
         }
