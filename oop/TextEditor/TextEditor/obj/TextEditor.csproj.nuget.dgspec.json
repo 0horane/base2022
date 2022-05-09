@@ -1,31 +1,29 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alumno\\orane\\escuela2022\\oop\\TextEditor\\TextEditor\\TextEditor.csproj": {}
+    "D:\\Documents\\projects\\escuela2022\\oop\\TextEditor\\TextEditor\\TextEditor.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alumno\\orane\\escuela2022\\oop\\TextEditor\\TextEditor\\TextEditor.csproj": {
+    "D:\\Documents\\projects\\escuela2022\\oop\\TextEditor\\TextEditor\\TextEditor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alumno\\orane\\escuela2022\\oop\\TextEditor\\TextEditor\\TextEditor.csproj",
+        "projectUniqueName": "D:\\Documents\\projects\\escuela2022\\oop\\TextEditor\\TextEditor\\TextEditor.csproj",
         "projectName": "TextEditor",
-        "projectPath": "C:\\Users\\Alumno\\orane\\escuela2022\\oop\\TextEditor\\TextEditor\\TextEditor.csproj",
-        "packagesPath": "C:\\Users\\Alumno\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alumno\\orane\\escuela2022\\oop\\TextEditor\\TextEditor\\obj\\",
+        "projectPath": "D:\\Documents\\projects\\escuela2022\\oop\\TextEditor\\TextEditor\\TextEditor.csproj",
+        "packagesPath": "C:\\Users\\emili\\.nuget\\packages\\",
+        "outputPath": "D:\\Documents\\projects\\escuela2022\\oop\\TextEditor\\TextEditor\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Alumno\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\emili\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "D:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -58,7 +56,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "D:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
