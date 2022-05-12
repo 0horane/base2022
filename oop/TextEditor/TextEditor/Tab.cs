@@ -8,81 +8,41 @@ namespace TextEditor
 {
     internal class Tab
     {
-        private int width, height, cursorX, cursorY, scrollX, scrollY, selectionoffset;
-        private string title;
+
+
+        private int cursorX, cursorY, scrollX, scrollY, selectionoffset;
+        private string title, newlinechar;
         private List<string> content;
         private int debugvar;
 
-        public Tab(string content = "", string title = "New Text Document", int? width = null, int? height = null, int cursorX = 0, int cursorY = 0, int scrollX = 0, int scrollY = 0, int selectionoffset = 0 )
+
+
+        public Tab(string? title = null, string content = "", int cursorX = 0, int cursorY = 0, int scrollX = 0, int scrollY = 0, int selectionoffset = 0, string? newlinechar = null )
         {
-            this.width = width ?? Console.WindowWidth;
-            this.height = height ?? Console.WindowHeight;
             this.cursorX = cursorX;
             this.cursorY = cursorY;
             this.scrollX = scrollX;
             this.scrollY = scrollY;
             this.selectionoffset = selectionoffset;
-            this.title = title;
-            this.content = content.Split("\n").ToList<string>();
-        }
+            this.newlinechar = newlinechar ?? Environment.NewLine;
 
-        public void testrender() {
-            Console.SetCursorPosition(0, 0);
-            Console.BackgroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine(title);
-            Console.ResetColor();
-
-
-            string outputext = "";
-            int linessofar, j;
-            for (linessofar = 0, j = 0; linessofar < height - 2 && j < content.Count; j++)
+            if (title != null && File.Exists(title))
             {
-                for (var i = 0; i < content[j].Length && linessofar < height - 2; i += width - 1) {
-                    //if (j == cursorY && i <= cursorX && cursorX < i+ width)
-                    string localsubstring = content[j].Substring(i, Math.Min(width - 1, content[j].Length - i));
-                    localsubstring += new string(' ', width - localsubstring.Length);
-                    outputext += localsubstring+"\n";
-                    linessofar++;
-                }
-                if (content[j].Length == 0)
-                {
-                    outputext += new string(' ', width)+ "\n";
-                    linessofar++;
-                }
-
-                
-            }
-            outputext+= string.Concat(Enumerable.Repeat(new string(' ', width) + '\n', height - linessofar-4)); 
-            
-            Console.Write(outputext + '\n');
-            Console.BackgroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine(statusLine());
-            Console.ResetColor();
-            Console.SetCursorPosition((cursorX % width)+ cursorX / width, cursorY-scrollY+1+cursorX/width);
-
-
-            /*Console.WriteLine();
-            for (int i = scrollY; i < Math.Min(scrollY + height - 1, content.Count - scrollY); i++) {
-                Console.WriteLine(content[i]);
-            }
-            if (height -1 > content.Count - scrollY)
+                this.content = File.ReadAllText(title).Split(newlinechar).ToList<string>();
+            } else
             {
-                for (int i = 0; i < height - 1 - (content.Count - scrollY)-1 ; i++)
-                {
-                    Console.WriteLine();
-
-                }
+                this.content = content.Split(newlinechar).ToList<string>();
             }
-            Console.WriteLine($"{cursorX}/{content[cursorY].Length-1} {cursorY}/{content.Count-1} {debugvar}");
-            */
+            this.title = title ?? "New Text Document";
+
         }
 
-        private string statusLine() {
-            return $"char {cursorX}/{content[cursorY].Length - 1}, row {cursorY}/{content.Count - 1}";
-        }
 
+
+        /// <summary>
+        /// adds text after current character, replacing any selection
+        /// </summary>
+        /// <param name="inputtext"></param>
         public void add(string inputtext) {
             rm(0);
             content[cursorY] = content[cursorY].Insert(cursorX, inputtext);
@@ -92,6 +52,10 @@ namespace TextEditor
             selectionoffset = 0;
         }
 
+        /// <summary>
+        /// removes rmoffset chars in whichever direction is indicated, or selection.
+        /// </summary>
+        /// <param name="rmoffset"></param>
         public void rm(int rmoffset)
         {
             adjustcursor();
@@ -116,6 +80,10 @@ namespace TextEditor
             
         }
 
+        /// <summary>
+        /// moves cursor x characters on a line. moves over newlines.
+        /// </summary>
+        /// <param name="x"></param>
         public void movecurX(int x) {
             adjustcursor();
             cursorX += x;
@@ -149,7 +117,10 @@ namespace TextEditor
             
         }
 
-
+        /// <summary>
+        /// moves cursor up or down. does not adjust cursor X
+        /// </summary>
+        /// <param name="y"></param>
         public void movecurY(int y)
         {
             if (0 <= cursorY+y && cursorY+y <= content.Count-1) { 
@@ -157,15 +128,34 @@ namespace TextEditor
             }
         }
 
+        /// <summary>
+        /// deletes any selection.
+        /// </summary>
         public void esc() {
             selectionoffset = 0;
+            adjustcursor();
         }
 
+        /// <summary>
+        /// UNIMPLEMENTED returns the amount of characters until the beginning of the amount'th word. 
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <returns></returns>
+        public int word(int amount = 1)
+        {
+
+            return 0;
+        }
+
+        /// <summary>
+        /// run to replace \ns with actual newlines
+        /// </summary>
+        /// <param name="linenumber"></param>
         private void splitlines(int linenumber)
         {
-            if (content[linenumber].Contains("\n"))
+            if (content[linenumber].Contains(newlinechar))
             {
-                string[] addedlines = content[linenumber].Split("\n");
+                string[] addedlines = content[linenumber].Split(newlinechar);
                 content.RemoveAt(linenumber);
                 for (int i = 0; i < addedlines.Length; i++)
                 {
@@ -175,6 +165,9 @@ namespace TextEditor
             } 
         }
 
+        /// <summary>
+        /// adjusts cursosr location, if its too far to the right
+        /// </summary>
         private void adjustcursor()
         {
             if (cursorX > content[cursorY].Length)
@@ -183,6 +176,43 @@ namespace TextEditor
             }
         }
 
+        public void write(string? path = null) {
+            File.WriteAllText(path ?? title, getString());
+        }
 
+        /*************************************GET AND SET******************************************/
+
+        public int getCursorX() { 
+            return cursorX;
+        }
+
+        public int getCursorY()
+        {
+            return cursorY;
+        }
+
+        public List<string> getContent()
+        {
+            return content;
+        }
+
+        public string getString()
+        {
+            return String.Join(newlinechar , content);
+        }
+
+        public string getTitle()
+        {
+            return title;
+        }
+        public int getScrollY()
+        {
+            return scrollY;
+        }
+
+        public string getNewlinechar()
+        {
+            return newlinechar;
+        }
     }
 }
