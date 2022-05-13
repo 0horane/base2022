@@ -35,7 +35,7 @@ namespace Ejerc004_Programando_con_Objetos
                 {
                     jugador.iter();
                 }
-                Console.WriteLine($"x: {jugador.posX} y:{jugador.posY} vx:{jugador.velX} vy:{jugador.velY} dir:{jugador.direccion*180}");
+                //Console.WriteLine($"x: {jugador.posX} y:{jugador.posY} vx:{jugador.velX} vy:{jugador.velY} dir:{jugador.direccion*180}");
 
             }
             while (true);
