@@ -9,61 +9,83 @@ namespace TextEditor
     internal class Window
     {
 
-        private int width, height, xoffset, yoffset;
+        private int width, height, xoffset, yoffset, scrollY, lastwrappedlines = 0, skippedlines=4;
         private Tab tab;
-        public Window(Tab? tab = null, int ? width = null, int? height = null, int xoffset = 0, int yoffset = 0)
+        public Window(Tab? tab = null, int ? width = null, int? height = null, int xoffset = 0, int yoffset = 0, int scrollY=0)
         {
             this.width = width ?? Console.WindowWidth;
             this.height = height ?? Console.WindowHeight;
             this.xoffset = xoffset;
             this.yoffset = yoffset;
             this.tab = tab ?? new Tab();
+            this.scrollY = scrollY;
         }
 
         public void testrender()
         {
+            width = Console.WindowWidth;
+            height = Console.WindowHeight;
+            scrollY =  Math.Max(0, tab.getCursorY() - height / 3 * 2);
+            //gets necesary data to print
             string[] content = tab.getContent().ToArray();
             int cursorX = tab.getCursorX();
             int cursorY = tab.getCursorY();
-            //Console.SetCursorPosition(0, 0);
+            //starts printing title at top
+            Console.SetCursorPosition(0, yoffset);
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine(tab.getTitle());
+            Console.WriteLine(tab.getTitle() + new string(' ', width - tab.getTitle().Length));
             Console.ResetColor();
-
+            //function has to be declared locally because no params (dumb way of doing things but ok)
             string statusLine()
             {
-                return $"char {cursorX}/{content[cursorY].Length - 1}, row {cursorY}/{content.Length - 1}";
+                return $"char {cursorX}/{content[cursorY].Length - 1}, row {cursorY}/{content.Length - 1}                          {width} {height}";
             }
 
             string outputext = "";
-            int linessofar, j;
-            for (linessofar = 0, j = 0; linessofar < height - 2 && j < content.Length; j++)
+            int linessofar, j, cpos=0;
+            //while we need more lines to fit the height and the text still ahs more lines:
+            for (linessofar = 0, j = scrollY; linessofar < height - skippedlines && j < content.Length; j++)
             {
-                for (var i = 0; i < content[j].Length && linessofar < height - 2; i += width - 1)
+                //split each line into sublines according to width
+                for (var i = 0; i < content[j].Length && linessofar < height - skippedlines; i += width)
                 {
                     //if (j == cursorY && i <= cursorX && cursorX < i+ width)
-                    string localsubstring = content[j].Substring(i, Math.Min(width - 1, content[j].Length - i));
+                    string localsubstring = content[j].Substring(i, Math.Min(width, content[j].Length - i));
                     localsubstring += new string(' ', width - localsubstring.Length);
-                    outputext += localsubstring + "\n";
+                    outputext += localsubstring + tab.getNewlinechar();
                     linessofar++;
+                    if (j<cursorY || (j == cursorY && cursorX > i+width-1 ))
+                        cpos++;
+                    
+                    
                 }
                 if (content[j].Length == 0)
                 {
-                    outputext += new string(' ', width) + "\n";
+                    outputext += new string(' ', width) + tab.getNewlinechar();
                     linessofar++;
+                    if (j < cursorY)
+                        cpos++;
+                    
+
                 }
 
 
             }
-            outputext += string.Concat(Enumerable.Repeat(new string(' ', width) + '\n', height - linessofar - 4));
+            if(height - linessofar - skippedlines > 0)
+            {
+                string newlines = string.Concat(Enumerable.Repeat(new string(' ', width) + tab.getNewlinechar(), height - linessofar - skippedlines));
+                outputext += newlines.Substring(0,newlines.Length-1);
 
+            }
+
+            lastwrappedlines = cpos - linessofar;
             Console.Write(outputext + '\n');
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine(statusLine());
+            Console.WriteLine(statusLine()+ new string(' ', width - statusLine().Length));
             Console.ResetColor();
-            //Console.SetCursorPosition((cursorX % width) + cursorX / width, cursorY - tab.getScrollY() + 1 + cursorX / width);
+            Console.SetCursorPosition((cursorX % width) , cpos+1+ yoffset);
 
 
             /*Console.WriteLine();
@@ -96,7 +118,7 @@ namespace TextEditor
                     }
                     break;
                 case ConsoleKey.Enter:
-                    tab.add("\n");
+                    tab.add(tab.getNewlinechar());
                     break;
                 case ConsoleKey.Escape:
                     tab.esc();
@@ -128,6 +150,12 @@ namespace TextEditor
             }
             testrender();
 
+        }
+
+        public void init() {
+            Console.Write(string.Concat(Enumerable.Repeat(new string(' ', width) + tab.getNewlinechar(), height )));
+            tab.add("");
+            testrender();
         }
 
         

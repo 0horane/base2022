@@ -10,19 +10,17 @@ namespace TextEditor
     {
 
 
-        private int cursorX, cursorY, scrollX, scrollY, selectionoffset;
+        private int cursorX, cursorY, selectionoffset;
         private string title, newlinechar;
         private List<string> content;
         private int debugvar;
 
 
 
-        public Tab(string? title = null, string content = "", int cursorX = 0, int cursorY = 0, int scrollX = 0, int scrollY = 0, int selectionoffset = 0, string? newlinechar = null )
+        public Tab(string? title = null, string content = "", int cursorX = 0, int cursorY = 0,  int selectionoffset = 0, string? newlinechar = null )
         {
             this.cursorX = cursorX;
             this.cursorY = cursorY;
-            this.scrollX = scrollX;
-            this.scrollY = scrollY;
             this.selectionoffset = selectionoffset;
             this.newlinechar = newlinechar ?? Environment.NewLine;
 
@@ -205,10 +203,7 @@ namespace TextEditor
         {
             return title;
         }
-        public int getScrollY()
-        {
-            return scrollY;
-        }
+
 
         public string getNewlinechar()
         {
