@@ -61,6 +61,9 @@ capitalprovincial.pop(list(capitalprovincial)[-1])
 
 8. Crear una función que reciba el color de una bandera e imprima el significado (combinar función con estructura condicional)
 """
+
+
+
 """
 #### Exploración de dataset
 
@@ -100,6 +103,11 @@ filesUploaded = files.upload()
 
 7. Eliminar la columna "UBICACION". ¿Cuál es el código para eliminar dos columnas a la vez?
 
+"""
+
+
+
+"""
 
 #### Ejericios pandas 2: filtrar y agrupar
 
