@@ -16,7 +16,6 @@ namespace TextEditor
         private int debugvar;
 
 
-
         public Tab(string? title = null, string content = "", int cursorX = 0, int cursorY = 0,  int selectionoffset = 0, string? newlinechar = null )
         {
             this.cursorX = cursorX;
@@ -83,47 +82,62 @@ namespace TextEditor
         /// </summary>
         /// <param name="x"></param>
         public void movecurX(int x) {
-            adjustcursor();
+            (int, int, bool) moved = getMovecurX(x);
+            cursorY += moved.Item2;
+            cursorX += moved.Item1;
+        }
+
+        /// <summary>
+        /// calculates the x and y movements requireed to move the cursor x spaces
+        /// </summary>
+        /// <param name="x">spaces moved</param>
+        /// <returns>tuple (xmoved, ymoved, !hitEOF)</returns>
+        private (int, int, bool) getMovecurX(int x) {
+            int cursorX = getAdjustcursor();
+            int cursorY = this.cursorY;
+            bool movedall = true;
             cursorX += x;
-            while (0 > cursorX ) {
+            while (0 > cursorX)
+            {
                 if (cursorY != 0)
                 {
                     cursorY--;
                     cursorX = content[cursorY].Length;
-                    
-
-                } else
+                }
+                else
                 {
                     cursorX = 0;
+                    movedall = false;
                 }
             }
-            while ( cursorX > content[cursorY].Length ) //this could be a division if i wanted to do things more effciiently
+            while (cursorX > content[cursorY].Length) //this could be a division if i wanted to do things more effciiently
             {
                 if (cursorY != content.Count - 1)
                 {
                     cursorX = 0;
                     cursorY++;
-                    
-
                 }
-                else {
+                else
+                {
                     cursorX = content[cursorY].Length;
-                } 
-
-                
+                    movedall=false;
+                }
             }
-            
+            return (cursorX - this.cursorX, cursorY - this.cursorY, movedall);
         }
 
         /// <summary>
         /// moves cursor up or down. does not adjust cursor X
         /// </summary>
         /// <param name="y"></param>
-        public void movecurY(int y)
+        /// 
+        public bool movecurY(int y)
         {
             if (0 <= cursorY+y && cursorY+y <= content.Count-1) { 
                 cursorY+=y;
-            }
+                return true;
+            } else
+                return false;
         }
 
         /// <summary>
@@ -139,11 +153,62 @@ namespace TextEditor
         /// </summary>
         /// <param name="amount"></param>
         /// <returns></returns>
-        public int word(int amount = 1)
+        public int getWord(int amount = 1)
         {
+            if (amount == 0)
+                return 0;
+            Func<char, bool> isletter = x => Char.IsLetter(x) || (int)x > 255;
+            Func<char, bool> iswhitespace = x => " \t".Contains(x);
+            Func<string, bool> isspecial = x => !(isletter(x[0]) || iswhitespace(x[0]) || x == newlinechar);
+            int direction = amount / Math.Abs(amount);
+            int currentchar = direction;
+            bool wordended = false;
+            bool specialword = isspecial(getCharAt());
+            // what have i done
+            
+            do
+            {
+                if (iswhitespace(getCharAt(currentchar)[0]))
+                    wordended = true;
+                else if (getCharAt(currentchar) == newlinechar)
+                {
+                    wordended = true;
+                    if (content[cursorY + getMovecurX(currentchar).Item2].Length == 0) // vi counts newlines as whitespaces as long as the line theyre in isnt empty
+                        break;
+                }
+                else if (specialword ? isspecial(getCharAt(currentchar)) : isletter(getCharAt(currentchar)[0])) { 
+                    if (wordended)
+                        break;
+                }
+                else
+                    break;
+                    
+                currentchar += direction;
+            } while (true);
 
-            return 0;
+            return currentchar;
         }
+
+        public string getCharAt(int pos=0)
+        {
+            (int, int, bool) moved = getMovecurX(pos);
+            if (!moved.Item3)
+                return "\0";
+            else if (cursorX + moved.Item1 >= content[cursorY+moved.Item2].Length)
+                return newlinechar;
+            else
+                try
+                {
+                    return content[cursorY + moved.Item2][cursorX + moved.Item1].ToString();
+                }
+                catch (Exception)
+                {
+
+                    throw new Exception($"{cursorY + moved.Item2} {content.Count} {cursorX + moved.Item1} {content[cursorY + moved.Item2].Length}");
+                }
+                
+        }
+
 
         /// <summary>
         /// run to replace \ns with actual newlines
@@ -168,11 +233,16 @@ namespace TextEditor
         /// </summary>
         private void adjustcursor()
         {
-            if (cursorX > content[cursorY].Length)
-            {
-                cursorX = content[cursorY].Length;
-            }
+            cursorX = getAdjustcursor();
         }
+
+        private int getAdjustcursor() {
+            if (cursorX > content[cursorY].Length)
+                return content[cursorY].Length;
+            else
+                return cursorX;
+        }
+
 
         public void write(string? path = null) {
             File.WriteAllText(path ?? title, getString());
