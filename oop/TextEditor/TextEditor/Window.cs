@@ -39,7 +39,7 @@ namespace TextEditor
             //function has to be declared locally because no params (dumb way of doing things but ok)
             string statusLine()
             {
-                return $"char {cursorX}/{content[cursorY].Length - 1}, row {cursorY}/{content.Length - 1}                          {width} {height}";
+                return $"char {cursorX}/{content[cursorY].Length - 1}, row {cursorY}/{content.Length - 1}   on:\"{((tab.getCharAt() == tab.getNewlinechar()) ? "\\n" : tab.getCharAt())}\"  scroll {yoffset}  window {width}/{height}";
             }
 
             string outputext = "";
