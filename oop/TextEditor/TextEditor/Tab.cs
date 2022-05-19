@@ -90,7 +90,7 @@ namespace TextEditor
         /// <summary>
         /// calculates the x and y movements requireed to move the cursor x spaces
         /// </summary>
-        /// <param name="x">spaces moved</param>
+        /// <param name="x">spaces moved</param> 
         /// <returns>tuple (xmoved, ymoved, !hitEOF)</returns>
         private (int, int, bool) getMovecurX(int x) {
             int cursorX = getAdjustcursor();
@@ -102,7 +102,7 @@ namespace TextEditor
                 if (cursorY != 0)
                 {
                     cursorY--;
-                    cursorX = content[cursorY].Length;
+                    cursorX += content[cursorY].Length+1;
                 }
                 else
                 {
@@ -114,7 +114,7 @@ namespace TextEditor
             {
                 if (cursorY != content.Count - 1)
                 {
-                    cursorX = 0;
+                    cursorX -= content[cursorY].Length+1;
                     cursorY++;
                 }
                 else
@@ -123,7 +123,7 @@ namespace TextEditor
                     movedall=false;
                 }
             }
-            return (cursorX - this.cursorX, cursorY - this.cursorY, movedall);
+            return (cursorX - this.cursorX, cursorY - this.cursorY, movedall);//WHY DID I DO IT LIKE THIS ABSOLUTE POSITIONS WOULD HAVE BEEN SO MUCH MORE USEFUL
         }
 
         /// <summary>
@@ -169,20 +169,30 @@ namespace TextEditor
             do
             {
                 if (iswhitespace(getCharAt(currentchar)[0]))
+                {
                     wordended = true;
+                }
                 else if (getCharAt(currentchar) == newlinechar)
                 {
                     wordended = true;
                     if (content[cursorY + getMovecurX(currentchar).Item2].Length == 0) // vi counts newlines as whitespaces as long as the line theyre in isnt empty
+                    {
                         break;
+                    }
                 }
-                else if (specialword ? isspecial(getCharAt(currentchar)) : isletter(getCharAt(currentchar)[0])) { 
+                else if (specialword ? isspecial(getCharAt(currentchar)) : isletter(getCharAt(currentchar)[0]))
+                {
                     if (wordended)
+                    {
                         break;
+                    }
                 }
                 else
+                {
                     break;
-                    
+                }
+
+
                 currentchar += direction;
             } while (true);
 
@@ -192,21 +202,13 @@ namespace TextEditor
         public string getCharAt(int pos=0)
         {
             (int, int, bool) moved = getMovecurX(pos);
+            
             if (!moved.Item3)
                 return "\0";
             else if (cursorX + moved.Item1 >= content[cursorY+moved.Item2].Length)
                 return newlinechar;
             else
-                try
-                {
-                    return content[cursorY + moved.Item2][cursorX + moved.Item1].ToString();
-                }
-                catch (Exception)
-                {
-
-                    throw new Exception($"{cursorY + moved.Item2} {content.Count} {cursorX + moved.Item1} {content[cursorY + moved.Item2].Length}");
-                }
-                
+                return content[cursorY + moved.Item2][cursorX + moved.Item1].ToString();
         }
 
 
@@ -246,6 +248,19 @@ namespace TextEditor
 
         public void write(string? path = null) {
             File.WriteAllText(path ?? title, getString());
+        }
+
+        public void debugAlert(string amessage, int xoffset=0)
+        {
+            (int, int) cps = Console.GetCursorPosition();
+            Console.SetCursorPosition(xoffset, Console.WindowHeight - 1);
+            Console.Write($"{amessage}");
+            Console.SetCursorPosition(cps.Item1, cps.Item2);
+        }
+
+        public void debugLog(string amessage)
+        {
+            File.AppendAllText("C:\\Users\\Alumno\\Desktop\\log.txt", amessage);
         }
 
         /*************************************GET AND SET******************************************/
