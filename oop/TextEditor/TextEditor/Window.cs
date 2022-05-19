@@ -110,12 +110,9 @@ namespace TextEditor
             {
                 case ConsoleKey.S:
                     if ((pkey.Modifiers & ConsoleModifiers.Control) != 0)
-                    {
                         tab.write();
-                    } else
-                    {
+                    else
                         tab.add(pkey.KeyChar.ToString());
-                    }
                     break;
                 case ConsoleKey.Enter:
                     tab.add(tab.getNewlinechar());
@@ -133,10 +130,16 @@ namespace TextEditor
                     tab.rm(1);
                     break;
                 case ConsoleKey.RightArrow:
-                    tab.movecurX(1);
+                    if ((pkey.Modifiers & ConsoleModifiers.Control) != 0)
+                        tab.movecurX(tab.getWord(1));
+                    else
+                        tab.movecurX(1);
                     break;
                 case ConsoleKey.LeftArrow:
-                    tab.movecurX(-1);
+                    if ((pkey.Modifiers & ConsoleModifiers.Control) != 0)
+                        tab.movecurX(tab.getWord(-1));
+                    else
+                        tab.movecurX(-1);
                     break;
                 case ConsoleKey.UpArrow:
                     tab.movecurY(-1);
