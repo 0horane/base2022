@@ -81,10 +81,14 @@ namespace TextEditor
         /// moves cursor x characters on a line. moves over newlines.
         /// </summary>
         /// <param name="x"></param>
-        public void movecurX(int x) {
+        public void movecurX(int x, bool select=false) {
             (int, int, bool) moved = getMovecurX(x);
             cursorY += moved.Item2;
             cursorX += moved.Item1;
+            if (select)
+                selectionoffset -= x;
+            else
+                selectionoffset = 0;
         }
 
         /// <summary>
@@ -131,7 +135,7 @@ namespace TextEditor
         /// </summary>
         /// <param name="y"></param>
         /// 
-        public bool movecurY(int y)
+        public bool movecurY(int y, bool select = false)
         {
             if (0 <= cursorY+y && cursorY+y <= content.Count-1) { 
                 cursorY+=y;
@@ -169,28 +173,20 @@ namespace TextEditor
             do
             {
                 if (iswhitespace(getCharAt(currentchar)[0]))
-                {
                     wordended = true;
-                }
                 else if (getCharAt(currentchar) == newlinechar)
                 {
                     wordended = true;
                     if (content[cursorY + getMovecurX(currentchar).Item2].Length == 0) // vi counts newlines as whitespaces as long as the line theyre in isnt empty
-                    {
                         break;
-                    }
                 }
                 else if (specialword ? isspecial(getCharAt(currentchar)) : isletter(getCharAt(currentchar)[0]))
                 {
                     if (wordended)
-                    {
                         break;
-                    }
                 }
                 else
-                {
                     break;
-                }
 
 
                 currentchar += direction;
@@ -260,7 +256,7 @@ namespace TextEditor
 
         public void debugLog(string amessage)
         {
-            File.AppendAllText("C:\\Users\\Alumno\\Desktop\\log.txt", amessage);
+            File.AppendAllText("C:\\Users\\Alumno\\Desktop\\log.txt", amessage); //TODO
         }
 
         /*************************************GET AND SET******************************************/
