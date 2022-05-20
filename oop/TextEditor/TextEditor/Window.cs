@@ -72,14 +72,16 @@ namespace TextEditor
 
 
             }
+            //pads bottom if cursor at lowest possible
             if(height - linessofar - skippedlines > 0)
             {
-                string newlines = string.Concat(Enumerable.Repeat(new string(' ', width) + tab.getNewlinechar(), height - linessofar - skippedlines));
+                string newlines = string.Concat(Enumerable.Repeat(new string(' ', width) + tab.getNewlinechar(), 1+height - linessofar - skippedlines));
                 outputext += newlines.Substring(0,newlines.Length-1);
 
             }
 
             lastwrappedlines = cpos - linessofar;
+            //writes whole text + statusline
             Console.Write(outputext + '\n');
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
