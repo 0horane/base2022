@@ -7,7 +7,7 @@
         static void Main(string[] args)
         {
             Tab onlytab = new Tab(@"C:\Users\Alumno\Desktop\help.txt");
-            Window onlywindow = new Window(onlytab);
+            sqWindow onlywindow = new sqWindow(onlytab);
             onlywindow.init();
             ConsoleKeyInfo pkey;
             do
