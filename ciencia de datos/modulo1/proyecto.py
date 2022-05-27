@@ -155,26 +155,42 @@ for column in data.columns:
 data.rename(columns=lowercasedict, inplace=True)
 
 """
-
-
 Ejercicios pandas 2: filtrar y agrupar
 
-    Crear un nuevo Dataframe solamente con las vacunas aplicadas en Efectores Públicos.
+1-    Crear un nuevo Dataframe solamente con las vacunas aplicadas en Efectores Públicos.
 
-    Crear un nuevo Dataframe solamente con las vacunas aplicadas a personas de entre 41 a 50 años.
+2-    Crear un nuevo Dataframe solamente con las vacunas aplicadas a personas de entre 41 a 50 años.
 
-    Calcular cuántas vacunas DOSIS_1 "Sinopharm" se dieron en efectores Públicos. Hacer con dos filtros, debe usarse el signo "&" y colocar cada uno entre parentesis: [(filtro1) & (filtro2)]
+3-    Calcular cuántas vacunas DOSIS_1 "Sinopharm" se dieron en efectores Públicos. Hacer con dos filtros, debe usarse el signo "&" y colocar cada uno entre parentesis: [(filtro1) & (filtro2)]
 
-    Calcular cuántas vacunas "Sputik" DOSIS_2 se dieron a mujeres.
+4-    Calcular cuántas vacunas "Sputik" DOSIS_2 se dieron a mujeres.
 
-    Generar un Dataframe con la cantidad de vacunas DOSIS_1 que se dieron para mujeres. Y generar otro Dataframe para hombres. Usar groupby.
+5-    Generar un Dataframe con la cantidad de vacunas DOSIS_1 que se dieron para mujeres. Y generar otro Dataframe para hombres. Usar groupby.
 
-    Generar un Dataframe que tenga la cantidad de vacunas DOSIS_1 aplicadas a mujeres y hombres de cada tipo de vacuna. Usar groupby.
+6-    Generar un Dataframe que tenga la cantidad de vacunas DOSIS_1 aplicadas a mujeres y hombres de cada tipo de vacuna. Usar groupby.
 
-    Calcular cuántas vacunas de DOSIS_1 y cuantas vacunas de DOSIS_2 se dieron en cada efector, y en total (sumadas las dos).
+7-    Calcular cuántas vacunas de DOSIS_1 y cuantas vacunas de DOSIS_2 se dieron en cada efector, y en total (sumadas las dos).
 """
+originaldata =  pd.read_csv("datasetproyecto.csv", sep=",")
+
+#1
+data2 = originaldata.copy() 
+filtropublico = data2["TIPO_EFECTOR"]=="Público" #suponiendo que no queremos los publicos nacionales
+data2=data2.loc[filtropublico]
+
+#2
+
+data3= originaldata.copy() 
+filtropublico = data3["GRUPO_ETARIO"]=="41 a 50"
+data3=data3.loc[filtropublico]
+
+#3
 
 
+data4= originaldata.copy() 
+filtropublico = data4["VACUNA"]=="Sputnik" & data4["TIPO_EFECTOR"]=="Público" #suponiendo que no queremos los publicos nacionales
+data4=data4.loc[filtropublico]
+data4.sum(["DOSIS_1", "DOSIS_2", "DOSIS_3"])
 
 """
 Ejercicios opcionales
