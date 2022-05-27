@@ -8,6 +8,7 @@
 
 ##### Base de Datos
 * [Clase 18/3](base/3-18/notsa.md)
+* [Clase 18/3](base/5-13/dase de batos omg omg.md)
 
 
 ##### OOP
