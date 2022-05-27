@@ -275,14 +275,27 @@ namespace TextEditor
 
         /*************************************GET AND SET******************************************/
 
-        public int getCursorX() { 
-            return cursorX;
+        public int CursorX { 
+            get => cursorX;
+            set
+            {
+                if (value >= 0)
+                    cursorX = value;
+                else 
+                    throw  new ArgumentOutOfRangeException(nameof(value));
+            }
         }
 
-        public int getCursorY()
-        {
-            return cursorY;
+        public int CursorY {
+            get => cursorY;
+            set { 
+                if (content.Count > value && value >= 0 )
+                    cursorX = value;
+                else 
+                    throw  new ArgumentOutOfRangeException(nameof(value));
+            }
         }
+
 
         public List<string> getContent()
         {
@@ -294,15 +307,10 @@ namespace TextEditor
             return String.Join(newlinechar , content);
         }
 
-        public string getTitle()
-        {
-            return title;
-        }
+        public string Title { get; set; }
 
 
-        public string getNewlinechar()
-        {
-            return newlinechar;
-        }
+        public string Newlinechar { get; set; }
+
     }
 }
