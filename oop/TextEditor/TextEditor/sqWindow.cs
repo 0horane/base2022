@@ -8,20 +8,16 @@ namespace TextEditor
 {
     internal class sqWindow
     {
-        /*TODO input keys have to be moved over to a readconsole event handler
+        /*TODO input keys have to be moved over 
             https://docs.microsoft.com/en-us/windows/console/classic-vs-vt
             https://docs.microsoft.com/en-us/windows/console/readconsoleinput
-
-            the event handler would redirect events to the corresponding windows depending on whats open. 
-            the event handler should probably manage the meaning of different keys and modes. maybe different 
-            classes inherit from the event manager to do use different input schemes. These would be passed 
-            through some kind of delegate to tab method that executes these. im not sure exactly
             
-            doing this wouldnt allow different schemes on different tabs though.
-            in which case the event handler has to send an enum or consolekey or something instead. And thats delegated
+        https://github.com/silkfire/Pastel/blob/master/src/ConsoleExtensions.cs
+
             to windwos. the handler would only decide which windows to delegate to. therfore i think the window 
-            manager should contain the event handler 
+            manager should contain the input handler 
         */
+
         private int width, height, xoffset, yoffset, scrollY, lastwrappedlines = 0, skippedlines=4;
         private Tab tab;
         public sqWindow(Tab? tab = null, int ? width = null, int? height = null, int xoffset = 0, int yoffset = 0, int scrollY=0)
