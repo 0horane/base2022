@@ -23,6 +23,8 @@ namespace TextEditor
         [DllImport("kernel32.dll")]
         private static extern bool ReadConsoleInput(IntPtr hConsoleInput, [Out] INPUT_RECORD[] lpBuffer, int  nLength, out int lpNumberOfEventsRead);
 
+
+        //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/how-to-create-a-c-cpp-union-by-using-attributes
         //https://github.com/SiTox/07-SK-K-PM/blob/master/PacMan/KeyPressed.cs
         [StructLayout(LayoutKind.Sequential)]
         private struct INPUT_RECORD
@@ -34,6 +36,14 @@ namespace TextEditor
             public ushort wVirtualScanCode;
             public char UnicodeChar;
             public uint dwControlKeyState;
+            /*
+            public (uint X, uint Y) dwMousePosition;
+            public ushort dwButtonState;
+            public ushort dwEventFlags;
+
+            public (uint X, uint Y) dwSize;
+            public bool dwSizebSetFocus;
+            */
         }
 
         private static IntPtr stdOut;
@@ -42,24 +52,32 @@ namespace TextEditor
         static AConsole()
         {
             //if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            
+
             stdOut = GetStdHandle(-11); //-11=stdout
             stdIn = GetStdHandle(-10); //-10=stdin
 
             GetConsoleMode(stdOut, out var outConsoleMode);
-            SetConsoleMode(stdOut, outConsoleMode | 4); //4=ENABLE_VIRTUAL_TERMINAL_PROCESSING
-            
+            //4=ENABLE_VIRTUAL_TERMINAL_PROCESSING 
+            //16=ENABLE_MOUSE_INPUT 128=ENABLE_EXTENDED_FLAGS  64=ENABLE_QUICK_EDIT_MODE 
+            // !(!p || q) inverted material conditional
+            SetConsoleMode(stdOut,  outConsoleMode | 4 );
+            SetConsoleMode(stdIn, ~(~(outConsoleMode | 128 | 16) | 64));
+
 
             //Environment.GetEnvironmentVariable("NO_COLOR")
-            
+
         }
 
         public static void WriteLine(string istr)
         {
             Console.WriteLine(istr);
         }
+        public static void Write(string istr)
+        {
+            Console.Write(istr);
+        }
 
-        
+
 
         public static void ReadKey()
         {
@@ -71,8 +89,35 @@ namespace TextEditor
             {
                 foreach (INPUT_RECORD record in iRecord)
                 {
-                    if (record.EventType != 0) { 
-                    WriteLine($"EventType:{record.EventType}, bKeyDown: {record.bKeyDown}, wRepeatCount: {record.wRepeatCount}, wVirtualKeyCode: {record.wVirtualKeyCode}, wVirtualScanCode: {record.wVirtualScanCode}, UnicodeChar: {record.UnicodeChar},  dwControlKeyState: {record.dwControlKeyState},");
+                    GetConsoleMode(stdOut, out var outConsoleMode);
+
+                    switch (record.EventType)
+                    {
+                        case 0:
+                            break;
+                        case 1:
+                            Write("key");
+                            break;
+                        case 2:
+                            Write("Mouse");
+                            //WriteLine($" dwMousePosition: {record.dwMousePosition}, dwButtonState: {record.dwButtonState}, dwControlKeyState: {record.dwControlKeyState}, dwEventFlags: {record.dwEventFlags}");
+                            break;
+                        case 4:
+                            Write("Window");
+                            ///WriteLine($" X: {record.dwSize.X}, Y: {record.dwSize.Y}");
+                            break;
+                        case 16:
+                            Write("focus");
+                            //WriteLine($" docus: {record.dwSizebSetFocus}");
+                            break;
+
+                        default:
+                            Write("OTHER");
+                            break;
+                    }
+                    if (record.EventType != 0) {
+                        WriteLine($" bKeyDown: {record.bKeyDown}, wRepeatCount: {record.wRepeatCount}, wVirtualKeyCode: {record.wVirtualKeyCode}, wVirtualScanCode: {record.wVirtualScanCode}, UnicodeChar: {record.UnicodeChar},  dwControlKeyState: {record.dwControlKeyState},");
+
                     }
                 }
             } else

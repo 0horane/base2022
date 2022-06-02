@@ -307,10 +307,10 @@ namespace TextEditor
             return String.Join(newlinechar , content);
         }
 
-        public string Title { get; set; }
+        public string Title { get=> title; set=> title=value; }
+        public string Newlinechar { get=> newlinechar; set=> newlinechar = value; }
 
 
-        public string Newlinechar { get; set; }
 
     }
 }
