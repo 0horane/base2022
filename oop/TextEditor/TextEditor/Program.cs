@@ -19,7 +19,7 @@
             } while (true);
             */
             while (true) { 
-            AConsole.ReadKey();
+            AConsole.ReadInputs(128);
             }
             //AConsole.WriteLine("\u001b[34;45;9mtest");
         }
