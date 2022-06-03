@@ -35,6 +35,7 @@ namespace TextEditor
 
         }
 
+
         [StructLayout(LayoutKind.Sequential)]
         private struct KEY_EVENT_RECORD
         {
@@ -60,11 +61,11 @@ namespace TextEditor
         }
         private struct MENU_EVENT_RECORD
         {
-            public uint dwSize;
+            public uint dwCommandId;
         }
         private struct FOCUS_EVENT_RECORD
         {
-            public bool dwSize;
+            public bool bSetFocus;
         }
 
 
@@ -75,6 +76,12 @@ namespace TextEditor
             public short Y;
         }
 
+        [StructLayout(LayoutKind.Sequential)]
+        private struct bool_coord
+        {
+            public bool i;
+            public COORD c;
+        }
 
         [System.Runtime.InteropServices.StructLayout(LayoutKind.Explicit)]
         struct EVENT_RECORD
@@ -139,10 +146,10 @@ namespace TextEditor
                         case 0:
                             break;
                         case 1:
-                            Write($"key {record.Event.KeyEvent.bKeyDown} {record.Event.KeyEvent.wRepeatCount} {record.Event.KeyEvent.wVirtualScanCode} {record.Event.KeyEvent.wVirtualKeyCode} {record.Event.KeyEvent.UnicodeChar} {record.Event.KeyEvent.dwControlKeyState}");
+                            Write($"key  down:{record.Event.KeyEvent.bKeyDown} rep:{record.Event.KeyEvent.wRepeatCount} vsc:{record.Event.KeyEvent.wVirtualScanCode} vkc:{record.Event.KeyEvent.wVirtualKeyCode} char:{record.Event.KeyEvent.UnicodeChar} cks:{record.Event.KeyEvent.dwControlKeyState}");
                             break;
                         case 2:
-                            Write("Mouse");
+                            Write($"Mouse {record.Event.MouseEvent.dwButtonState} {record.Event.MouseEvent.dwControlKeyState} {record.Event.MouseEvent.dwEventFlags} {record.Event.MouseEvent.dwMousePosition.X} {record.Event.MouseEvent.dwMousePosition.Y}");
                             break;
                         case 4:
                             Write("Window");
