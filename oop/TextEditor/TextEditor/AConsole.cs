@@ -26,25 +26,71 @@ namespace TextEditor
 
         //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/how-to-create-a-c-cpp-union-by-using-attributes
         //https://github.com/SiTox/07-SK-K-PM/blob/master/PacMan/KeyPressed.cs
+        //Data structure for inputs
         [StructLayout(LayoutKind.Sequential)]
         private struct INPUT_RECORD
         {
             public ushort EventType;
-            public uint bKeyDown;
+            public EVENT_RECORD Event;
+
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct KEY_EVENT_RECORD
+        {
+            public bool bKeyDown;
             public ushort wRepeatCount;
             public ushort wVirtualKeyCode;
             public ushort wVirtualScanCode;
             public char UnicodeChar;
             public uint dwControlKeyState;
-            /*
-            public (uint X, uint Y) dwMousePosition;
-            public ushort dwButtonState;
-            public ushort dwEventFlags;
-
-            public (uint X, uint Y) dwSize;
-            public bool dwSizebSetFocus;
-            */
         }
+        [StructLayout(LayoutKind.Sequential)]
+        private struct MOUSE_EVENT_RECORD
+        {
+            public COORD dwMousePosition;
+            public ushort dwButtonState;
+            public ushort dwControlKeyState;
+            public ushort dwEventFlags;
+        }
+        [StructLayout(LayoutKind.Sequential)]
+        private struct WINDOW_BUFFER_SIZE_RECORD
+        {
+            public COORD dwSize;
+        }
+        private struct MENU_EVENT_RECORD
+        {
+            public uint dwSize;
+        }
+        private struct FOCUS_EVENT_RECORD
+        {
+            public bool dwSize;
+        }
+
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct COORD
+        {
+            public short X;
+            public short Y;
+        }
+
+
+        [System.Runtime.InteropServices.StructLayout(LayoutKind.Explicit)]
+        struct EVENT_RECORD
+        {
+            [System.Runtime.InteropServices.FieldOffset(0)]
+            public KEY_EVENT_RECORD KeyEvent;
+            [System.Runtime.InteropServices.FieldOffset(0)]
+            public MOUSE_EVENT_RECORD MouseEvent;
+            [System.Runtime.InteropServices.FieldOffset(0)]
+            public WINDOW_BUFFER_SIZE_RECORD WindowBufferSizeEvent;
+            [System.Runtime.InteropServices.FieldOffset(0)]
+            public MENU_EVENT_RECORD MenuEvent;
+            [System.Runtime.InteropServices.FieldOffset(0)]
+            public FOCUS_EVENT_RECORD FocusEvent;
+        }
+
 
         private static IntPtr stdOut;
         private static IntPtr stdIn;
@@ -79,55 +125,39 @@ namespace TextEditor
 
 
 
-        public static void ReadKey()
+        public static void ReadInputs(uint howmany)
         {
-            // https://stackoverflow.com/questions/46795072/how-to-get-mouse-input-inside-a-c-console-program-on-windows-10 TODO MOUSE INPUT
             WriteLine("\u001b[34;45;9m\nsegjkhlsfjklgjkdfhskjsdglkuhdfskldgkhdfghuksdkulbsnilbhgvhblj,gsb\u001b[0m");
             int nRead = 0;
-            INPUT_RECORD[] iRecord = new INPUT_RECORD[128];
-            if (ReadConsoleInput(stdIn, iRecord, 128, out nRead))
+            INPUT_RECORD[] iRecord = new INPUT_RECORD[howmany];
+            if (ReadConsoleInput(stdIn, iRecord, (int)howmany, out nRead))
             {
                 foreach (INPUT_RECORD record in iRecord)
                 {
-                    GetConsoleMode(stdOut, out var outConsoleMode);
-
                     switch (record.EventType)
                     {
                         case 0:
                             break;
                         case 1:
-                            Write("key");
+                            Write($"key {record.Event.KeyEvent.bKeyDown} {record.Event.KeyEvent.wRepeatCount} {record.Event.KeyEvent.wVirtualScanCode} {record.Event.KeyEvent.wVirtualKeyCode} {record.Event.KeyEvent.UnicodeChar} {record.Event.KeyEvent.dwControlKeyState}");
                             break;
                         case 2:
                             Write("Mouse");
-                            //WriteLine($" dwMousePosition: {record.dwMousePosition}, dwButtonState: {record.dwButtonState}, dwControlKeyState: {record.dwControlKeyState}, dwEventFlags: {record.dwEventFlags}");
                             break;
                         case 4:
                             Write("Window");
-                            ///WriteLine($" X: {record.dwSize.X}, Y: {record.dwSize.Y}");
                             break;
                         case 16:
                             Write("focus");
-                            //WriteLine($" docus: {record.dwSizebSetFocus}");
                             break;
-
                         default:
-                            Write("OTHER");
                             break;
                     }
-                    if (record.EventType != 0) {
-                        WriteLine($" bKeyDown: {record.bKeyDown}, wRepeatCount: {record.wRepeatCount}, wVirtualKeyCode: {record.wVirtualKeyCode}, wVirtualScanCode: {record.wVirtualScanCode}, UnicodeChar: {record.UnicodeChar},  dwControlKeyState: {record.dwControlKeyState},");
-
-                    }
+                    
                 }
-            } else
-            {
-                WriteLine("noinput");
-            }
+            } 
             
         }
-
-
     }
 }
 
