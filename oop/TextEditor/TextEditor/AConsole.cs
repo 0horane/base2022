@@ -31,9 +31,6 @@ namespace TextEditor
         private struct INPUT_RECORD
         {
             public ushort EventType;
-<<<<<<< HEAD
-            public uint_coord bKeyDown;
-=======
             public EVENT_RECORD Event;
 
         }
@@ -43,22 +40,19 @@ namespace TextEditor
         private struct KEY_EVENT_RECORD
         {
             public bool bKeyDown;
->>>>>>> temp
             public ushort wRepeatCount;
             public ushort wVirtualKeyCode;
             public ushort wVirtualScanCode;
             public char UnicodeChar;
             public uint dwControlKeyState;
-            /*
-            public (uint X, uint Y) dwMousePosition;
+        }
+        [StructLayout(LayoutKind.Sequential)]
+        private struct MOUSE_EVENT_RECORD
+        {
+            public COORD dwMousePosition;
             public ushort dwButtonState;
+            public ushort dwControlKeyState;
             public ushort dwEventFlags;
-<<<<<<< HEAD
-
-            public (uint X, uint Y) dwSize;
-            public bool dwSizebSetFocus;
-            */
-=======
         }
         [StructLayout(LayoutKind.Sequential)]
         private struct WINDOW_BUFFER_SIZE_RECORD
@@ -72,18 +66,15 @@ namespace TextEditor
         private struct FOCUS_EVENT_RECORD
         {
             public bool bSetFocus;
->>>>>>> temp
         }
 
+
         [StructLayout(LayoutKind.Sequential)]
-        private struct coord
+        private struct COORD
         {
             public short X;
             public short Y;
         }
-<<<<<<< HEAD
-        
-=======
 
         [StructLayout(LayoutKind.Sequential)]
         private struct bool_coord
@@ -92,15 +83,19 @@ namespace TextEditor
             public COORD c;
         }
 
->>>>>>> temp
         [System.Runtime.InteropServices.StructLayout(LayoutKind.Explicit)]
-        struct uint_coord
+        struct EVENT_RECORD
         {
             [System.Runtime.InteropServices.FieldOffset(0)]
-            public uint i;
-
+            public KEY_EVENT_RECORD KeyEvent;
             [System.Runtime.InteropServices.FieldOffset(0)]
-            public coord c;
+            public MOUSE_EVENT_RECORD MouseEvent;
+            [System.Runtime.InteropServices.FieldOffset(0)]
+            public WINDOW_BUFFER_SIZE_RECORD WindowBufferSizeEvent;
+            [System.Runtime.InteropServices.FieldOffset(0)]
+            public MENU_EVENT_RECORD MenuEvent;
+            [System.Runtime.InteropServices.FieldOffset(0)]
+            public FOCUS_EVENT_RECORD FocusEvent;
         }
 
 
@@ -151,11 +146,7 @@ namespace TextEditor
                         case 0:
                             break;
                         case 1:
-<<<<<<< HEAD
-                            Write("key");
-=======
                             Write($"key  down:{record.Event.KeyEvent.bKeyDown} rep:{record.Event.KeyEvent.wRepeatCount} vsc:{record.Event.KeyEvent.wVirtualScanCode} vkc:{record.Event.KeyEvent.wVirtualKeyCode} char:{record.Event.KeyEvent.UnicodeChar} cks:{record.Event.KeyEvent.dwControlKeyState}");
->>>>>>> temp
                             break;
                         case 2:
                             Write($"Mouse {record.Event.MouseEvent.dwButtonState} {record.Event.MouseEvent.dwControlKeyState} {record.Event.MouseEvent.dwEventFlags} {record.Event.MouseEvent.dwMousePosition.X} {record.Event.MouseEvent.dwMousePosition.Y}");
@@ -169,10 +160,7 @@ namespace TextEditor
                         default:
                             break;
                     }
-                    if (record.EventType != 0) {
-                        WriteLine($" bKeyDown: {record.bKeyDown.c.X} {record.bKeyDown.c.Y}, wRepeatCount: {record.wRepeatCount}, wVirtualKeyCode: {record.wVirtualKeyCode}, wVirtualScanCode: {record.wVirtualScanCode}, UnicodeChar: {record.UnicodeChar},  dwControlKeyState: {record.dwControlKeyState},");
-
-                    }
+                    
                 }
             } 
             
