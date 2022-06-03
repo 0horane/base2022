@@ -31,7 +31,19 @@ namespace TextEditor
         private struct INPUT_RECORD
         {
             public ushort EventType;
+<<<<<<< HEAD
             public uint_coord bKeyDown;
+=======
+            public EVENT_RECORD Event;
+
+        }
+
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct KEY_EVENT_RECORD
+        {
+            public bool bKeyDown;
+>>>>>>> temp
             public ushort wRepeatCount;
             public ushort wVirtualKeyCode;
             public ushort wVirtualScanCode;
@@ -41,10 +53,26 @@ namespace TextEditor
             public (uint X, uint Y) dwMousePosition;
             public ushort dwButtonState;
             public ushort dwEventFlags;
+<<<<<<< HEAD
 
             public (uint X, uint Y) dwSize;
             public bool dwSizebSetFocus;
             */
+=======
+        }
+        [StructLayout(LayoutKind.Sequential)]
+        private struct WINDOW_BUFFER_SIZE_RECORD
+        {
+            public COORD dwSize;
+        }
+        private struct MENU_EVENT_RECORD
+        {
+            public uint dwCommandId;
+        }
+        private struct FOCUS_EVENT_RECORD
+        {
+            public bool bSetFocus;
+>>>>>>> temp
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -53,7 +81,18 @@ namespace TextEditor
             public short X;
             public short Y;
         }
+<<<<<<< HEAD
         
+=======
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct bool_coord
+        {
+            public bool i;
+            public COORD c;
+        }
+
+>>>>>>> temp
         [System.Runtime.InteropServices.StructLayout(LayoutKind.Explicit)]
         struct uint_coord
         {
@@ -112,10 +151,14 @@ namespace TextEditor
                         case 0:
                             break;
                         case 1:
+<<<<<<< HEAD
                             Write("key");
+=======
+                            Write($"key  down:{record.Event.KeyEvent.bKeyDown} rep:{record.Event.KeyEvent.wRepeatCount} vsc:{record.Event.KeyEvent.wVirtualScanCode} vkc:{record.Event.KeyEvent.wVirtualKeyCode} char:{record.Event.KeyEvent.UnicodeChar} cks:{record.Event.KeyEvent.dwControlKeyState}");
+>>>>>>> temp
                             break;
                         case 2:
-                            Write("Mouse");
+                            Write($"Mouse {record.Event.MouseEvent.dwButtonState} {record.Event.MouseEvent.dwControlKeyState} {record.Event.MouseEvent.dwEventFlags} {record.Event.MouseEvent.dwMousePosition.X} {record.Event.MouseEvent.dwMousePosition.Y}");
                             break;
                         case 4:
                             Write("Window");
