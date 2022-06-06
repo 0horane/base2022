@@ -85,9 +85,10 @@ namespace TextEditor
             (int, int, bool) moved = getMovecurX(x);
             cursorY += moved.Item2;
             cursorX += moved.Item1;
-            if (select)
-                selectionoffset -= x;
-            else
+            if (select) { 
+                if (moved.Item3) 
+                    selectionoffset -= x;
+            } else
                 selectionoffset = 0;
         }
 
@@ -139,6 +140,19 @@ namespace TextEditor
         {
             if (0 <= cursorY+y && cursorY+y <= content.Count-1) { 
                 cursorY+=y;
+                if (select)
+                {
+                    while (y > 0)
+                    {
+                        selectionoffset += content[cursorY - y].Length + cursorX;
+                        y--;
+                    }
+                    while (y < 0)
+                    {
+                        selectionoffset += -content[cursorY + y].Length + cursorX;
+                        y++;
+                    }
+                }
                 return true;
             } else
                 return false;
@@ -261,14 +275,27 @@ namespace TextEditor
 
         /*************************************GET AND SET******************************************/
 
-        public int getCursorX() { 
-            return cursorX;
+        public int CursorX { 
+            get => cursorX;
+            set
+            {
+                if (value >= 0)
+                    cursorX = value;
+                else 
+                    throw  new ArgumentOutOfRangeException(nameof(value));
+            }
         }
 
-        public int getCursorY()
-        {
-            return cursorY;
+        public int CursorY {
+            get => cursorY;
+            set { 
+                if (content.Count > value && value >= 0 )
+                    cursorX = value;
+                else 
+                    throw  new ArgumentOutOfRangeException(nameof(value));
+            }
         }
+
 
         public List<string> getContent()
         {
@@ -280,15 +307,10 @@ namespace TextEditor
             return String.Join(newlinechar , content);
         }
 
-        public string getTitle()
-        {
-            return title;
-        }
+        public string Title { get=> title; set=> title=value; }
+        public string Newlinechar { get=> newlinechar; set=> newlinechar = value; }
 
 
-        public string getNewlinechar()
-        {
-            return newlinechar;
-        }
+
     }
 }

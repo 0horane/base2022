@@ -8,20 +8,16 @@ namespace TextEditor
 {
     internal class sqWindow
     {
-        /*TODO input keys have to be moved over to a readconsole event handler
+        /*TODO input keys have to be moved over 
             https://docs.microsoft.com/en-us/windows/console/classic-vs-vt
             https://docs.microsoft.com/en-us/windows/console/readconsoleinput
-
-            the event handler would redirect events to the corresponding windows depending on whats open. 
-            the event handler should probably manage the meaning of different keys and modes. maybe different 
-            classes inherit from the event manager to do use different input schemes. These would be passed 
-            through some kind of delegate to tab method that executes these. im not sure exactly
             
-            doing this wouldnt allow different schemes on different tabs though.
-            in which case the event handler has to send an enum or consolekey or something instead. And thats delegated
+        https://github.com/silkfire/Pastel/blob/master/src/ConsoleExtensions.cs
+
             to windwos. the handler would only decide which windows to delegate to. therfore i think the window 
-            manager should contain the event handler 
+            manager should contain the input handler 
         */
+
         private int width, height, xoffset, yoffset, scrollY, lastwrappedlines = 0, skippedlines=4;
         private Tab tab;
         public sqWindow(Tab? tab = null, int ? width = null, int? height = null, int xoffset = 0, int yoffset = 0, int scrollY=0)
@@ -38,21 +34,21 @@ namespace TextEditor
         {
             width = Console.WindowWidth;
             height = Console.WindowHeight;
-            scrollY =  Math.Max(0, tab.getCursorY() - height / 3 * 2);
+            scrollY =  Math.Max(0, tab.CursorY - height / 3 * 2);
             //gets necesary data to print
             string[] content = tab.getContent().ToArray();
-            int cursorX = tab.getCursorX();
-            int cursorY = tab.getCursorY();
+            int cursorX = tab.CursorX;
+            int cursorY = tab.CursorY;
             //starts printing title at top
             Console.SetCursorPosition(0, yoffset);
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine(tab.getTitle() + new string(' ', width - tab.getTitle().Length));
+            Console.WriteLine(tab.Title + new string(' ', width - tab.Title.Length));
             Console.ResetColor();
             //function has to be declared locally because no params (dumb way of doing things but ok)
             string statusLine()
             {
-                return $"char {cursorX}/{content[cursorY].Length - 1}, row {cursorY}/{content.Length - 1}   on:\"{((tab.getCharAt() == tab.getNewlinechar()) ? "\\n" : tab.getCharAt())}\"  scroll {yoffset}  window {width}/{height}";
+                return $"char {cursorX}/{content[cursorY].Length - 1}, row {cursorY}/{content.Length - 1}   on:\"{((tab.getCharAt() == tab.Newlinechar) ? "\\n" : tab.getCharAt())}\"  scroll {yoffset}  window {width}/{height}";
             }
 
             string outputext = "";
@@ -66,7 +62,7 @@ namespace TextEditor
                     //if (j == cursorY && i <= cursorX && cursorX < i+ width)
                     string localsubstring = content[j].Substring(i, Math.Min(width, content[j].Length - i));
                     localsubstring += new string(' ', width - localsubstring.Length);
-                    outputext += localsubstring + tab.getNewlinechar();
+                    outputext += localsubstring + tab.Newlinechar;
                     linessofar++;
                     if (j<cursorY || (j == cursorY && cursorX > i+width-1 ))
                         cpos++;
@@ -75,7 +71,7 @@ namespace TextEditor
                 }
                 if (content[j].Length == 0)
                 {
-                    outputext += new string(' ', width) + tab.getNewlinechar();
+                    outputext += new string(' ', width) + tab.Newlinechar;
                     linessofar++;
                     if (j < cursorY)
                         cpos++;
@@ -88,7 +84,7 @@ namespace TextEditor
             //pads bottom if cursor at lowest possible
             if(height - linessofar - skippedlines > 0)
             {
-                string newlines = string.Concat(Enumerable.Repeat(new string(' ', width) + tab.getNewlinechar(), 1+height - linessofar - skippedlines));
+                string newlines = string.Concat(Enumerable.Repeat(new string(' ', width) + tab.Newlinechar, 1+height - linessofar - skippedlines));
                 outputext += newlines.Substring(0,newlines.Length-1);
 
             }
@@ -130,7 +126,7 @@ namespace TextEditor
                         tab.add(pkey.KeyChar.ToString());
                     break;
                 case ConsoleKey.Enter:
-                    tab.add(tab.getNewlinechar());
+                    tab.add(tab.Newlinechar);
                     break;
                 case ConsoleKey.Escape:
                     tab.esc();
@@ -171,7 +167,7 @@ namespace TextEditor
         }
 
         public void init() {
-            Console.Write(string.Concat(Enumerable.Repeat(new string(' ', width) + tab.getNewlinechar(), height )));
+            Console.Write(string.Concat(Enumerable.Repeat(new string(' ', width) + tab.Newlinechar, height )));
             tab.add("");
             testrender();
         }
