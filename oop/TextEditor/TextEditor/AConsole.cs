@@ -39,7 +39,7 @@ namespace TextEditor
         [StructLayout(LayoutKind.Sequential)]
         private struct KEY_EVENT_RECORD
         {
-            public bool bKeyDown;
+            public uint_coord bKeyDown;
             public ushort wRepeatCount;
             public ushort wVirtualKeyCode;
             public ushort wVirtualScanCode;
@@ -49,7 +49,7 @@ namespace TextEditor
         [StructLayout(LayoutKind.Sequential)]
         private struct MOUSE_EVENT_RECORD
         {
-            public COORD dwMousePosition;
+            public uint_coord dwMousePosition;
             public ushort dwButtonState;
             public ushort dwControlKeyState;
             public ushort dwEventFlags;
@@ -57,15 +57,15 @@ namespace TextEditor
         [StructLayout(LayoutKind.Sequential)]
         private struct WINDOW_BUFFER_SIZE_RECORD
         {
-            public COORD dwSize;
+            public uint_coord dwSize;
         }
         private struct MENU_EVENT_RECORD
         {
-            public uint dwCommandId;
+            public uint_coord dwCommandId;
         }
         private struct FOCUS_EVENT_RECORD
         {
-            public bool bSetFocus;
+            public uint_coord bSetFocus;
         }
 
 
@@ -76,25 +76,30 @@ namespace TextEditor
             public short Y;
         }
 
-        [StructLayout(LayoutKind.Sequential)]
-        private struct bool_coord
+        //So for some reason if i dont have this the next parameter ends up
+        //being a 0. and if i add a padding parameter it gets filled in the
+        //next's stead. so this ridiculous workaround will do for now
+        [StructLayout(LayoutKind.Explicit)]
+        private struct uint_coord
         {
-            public bool i;
+            [FieldOffset(0)]
+            public uint i;
+            [FieldOffset(0)]
             public COORD c;
         }
 
-        [System.Runtime.InteropServices.StructLayout(LayoutKind.Explicit)]
+        [StructLayout(LayoutKind.Explicit)]
         struct EVENT_RECORD
         {
-            [System.Runtime.InteropServices.FieldOffset(0)]
+            [FieldOffset(0)]
             public KEY_EVENT_RECORD KeyEvent;
-            [System.Runtime.InteropServices.FieldOffset(0)]
+            [FieldOffset(0)]
             public MOUSE_EVENT_RECORD MouseEvent;
-            [System.Runtime.InteropServices.FieldOffset(0)]
+            [FieldOffset(0)]
             public WINDOW_BUFFER_SIZE_RECORD WindowBufferSizeEvent;
-            [System.Runtime.InteropServices.FieldOffset(0)]
+            [FieldOffset(0)]
             public MENU_EVENT_RECORD MenuEvent;
-            [System.Runtime.InteropServices.FieldOffset(0)]
+            [FieldOffset(0)]
             public FOCUS_EVENT_RECORD FocusEvent;
         }
 
@@ -134,6 +139,7 @@ namespace TextEditor
 
         public static void ReadInputs(uint howmany)
         {
+            //Console.SetCursorPosition(0, 0);
             WriteLine("\u001b[34;45;9m\nsegjkhlsfjklgjkdfhskjsdglkuhdfskldgkhdfghuksdkulbsnilbhgvhblj,gsb\u001b[0m");
             int nRead = 0;
             INPUT_RECORD[] iRecord = new INPUT_RECORD[howmany];
@@ -146,18 +152,19 @@ namespace TextEditor
                         case 0:
                             break;
                         case 1:
-                            Write($"key  down:{record.Event.KeyEvent.bKeyDown} rep:{record.Event.KeyEvent.wRepeatCount} vsc:{record.Event.KeyEvent.wVirtualScanCode} vkc:{record.Event.KeyEvent.wVirtualKeyCode} char:{record.Event.KeyEvent.UnicodeChar} cks:{record.Event.KeyEvent.dwControlKeyState}");
+                            Write($"key  down:{record.Event.KeyEvent.bKeyDown.i} rep:{record.Event.KeyEvent.wRepeatCount} vsc:{record.Event.KeyEvent.wVirtualScanCode} vkc:{record.Event.KeyEvent.wVirtualKeyCode} char:{record.Event.KeyEvent.UnicodeChar} cks:{record.Event.KeyEvent.dwControlKeyState}");
                             break;
                         case 2:
-                            Write($"Mouse {record.Event.MouseEvent.dwButtonState} {record.Event.MouseEvent.dwControlKeyState} {record.Event.MouseEvent.dwEventFlags} {record.Event.MouseEvent.dwMousePosition.X} {record.Event.MouseEvent.dwMousePosition.Y}");
+                            Write($"Mouse state:{record.Event.MouseEvent.dwButtonState} cks:{record.Event.MouseEvent.dwControlKeyState} flags:{record.Event.MouseEvent.dwEventFlags} x:{record.Event.MouseEvent.dwMousePosition.c.X} y:{record.Event.MouseEvent.dwMousePosition.c.Y}");
                             break;
                         case 4:
-                            Write("Window");
+                            Write($"Window x:{record.Event.WindowBufferSizeEvent.dwSize.c.X} y:{record.Event.WindowBufferSizeEvent.dwSize.c.Y}");
                             break;
                         case 16:
-                            Write("focus");
+                            Write($"focus {record.Event.FocusEvent.bSetFocus.i}");
                             break;
                         default:
+                            Write($"on goddd  {record.EventType}");
                             break;
                     }
                     
