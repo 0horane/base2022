@@ -77,6 +77,26 @@ namespace Tarea005
             return ipi;
         }
 
+        public static string String(
+            string prompt = "Ingrese un string: ",
+            Func<string, bool>? condition = null,
+            string conditionfail = "Ese strimg no es valido. Ingrese un strimg: ")
+        {
+            condition = condition ?? (x => true); //no se permite poner una funcion anonima como parametro por defecto.
+
+            string ipi;
+            Console.WriteLine(prompt);
+
+            while (true)
+            {
+                ipi = Console.ReadLine();
+                if (condition(ipi))
+                    break;
+                Console.WriteLine(conditionfail);
+            };
+            return ipi;
+        }
+
 
     }
 }

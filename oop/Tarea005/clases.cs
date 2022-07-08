@@ -2,10 +2,10 @@ namespace Tarea005
 {
     public abstract class Vehiculo
     {
-        float weight;
-        int license_plate;
+        public float weight;
+        public string license_plate;
 
-        public Vehiculo(float weight, int license_plate)
+        public Vehiculo(float weight, string license_plate)
         {
             this.weight = weight;
             this.license_plate = license_plate;
@@ -23,7 +23,7 @@ namespace Tarea005
             Urbana = 2
         }
 
-        public Moto(float weight, int license_plate, TipoDeMoto tipo ) : base(weight, license_plate)
+        public Moto(float weight, string license_plate, TipoDeMoto tipo ) : base(weight, license_plate)
         {
             this.tipo = tipo;
         }
@@ -31,8 +31,8 @@ namespace Tarea005
 
     public class Auto : Vehiculo
     {
-        int cantidadAsientos;
-        public Auto(float weight, int license_plate, int cantidadAsientos) : base(weight, license_plate)
+        public int cantidadAsientos;
+        public Auto(float weight, string license_plate, int cantidadAsientos) : base(weight, license_plate)
         {
             this.cantidadAsientos = cantidadAsientos;
         }
@@ -41,7 +41,7 @@ namespace Tarea005
     public class Camioneta : Vehiculo
     {
         public bool tienecaja; //true= caja   false=baul
-        public Camioneta(float weight, int license_plate, bool tienecaja) : base(weight, license_plate)
+        public Camioneta(float weight, string license_plate, bool tienecaja) : base(weight, license_plate)
         {
             this.tienecaja = tienecaja;
         }
