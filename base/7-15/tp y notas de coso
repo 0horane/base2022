@@ -1,0 +1,68 @@
+Un pivot puede servir como metodo de normalizacion. Sirve para convertir un conjunto de registros que se podrian representar como una enumeracion en campos, ej..
+Esta enumeracion se puede conseguir a traves de redondear numeros. En este sentido, el pivot puede servir como metodo "declarativo" de acumular valores y sacar promedios en un rango de tiempo.
+
+Requisitos:
+- existencia de una columna de agrupacion (el total que luego se puede llegar a tener que sumar/min/etc con otros si hay entradas repetidas)
+- Existencia de una columna fuente de unevos campos (enumeracion, lista de los meses)
+
+
+------------------------
+| Year | Month | Total |
+------------------------
+| 1984 | JAN   | 15    |
+------------------------
+| 1984 | Feb   | 20    |
+------------------------
+| 1985 | JAN   | 155   |
+------------------------
+
+
+
+
+--------------------------
+| Year | Jan | Feb | ... |
+--------------------------
+| 1984 | 15  | 20  | ... |
+--------------------------
+| 1985 | 155 |  -  | ... |
+--------------------------
+
+SELECT * FROM (
+	SELECT * FROM Table
+) TempTableName
+
+PIVOT (
+	ACCFUNC(AccColumn)
+	for [FieldSourceColumn] in ([values],[available],[in],[field],[source],[column])
+) PivotedTempTableName
+
+
+
+the syntax for unpivot is much the same. Only difference is that you dont have to indicate an accumulator function for the total field. 
+
+
+fields and records
+
+
+```sql
+SELECT * FROM (
+	SELECT ProductName, [Order Details].UnitPrice, Discount FROM [Order Details] INNER JOIN Products ON [Order Details].ProductID = Products.ProductID 
+) S
+PIVOT(
+	AVG(UnitPrice)
+	for Discount in ([0.05],[0.1],[0.15],[0.2],[0.25])
+) P
+```
+
+
+
+```sql
+SELECT * FROM (
+	SELECT EmployeeID, Freight, YEAR(OrderDate) as YearDate FROM ORDERS
+) S
+PIVOT(
+	SUM(Freight)
+	for [YearDate] in ([1996],[1997],[1998])
+) P
+
+```
