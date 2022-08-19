@@ -1,0 +1,31 @@
+ <!DOCTYPE html>
+ <html lang="en">
+	 <head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+
+	 </head>
+	 <body style="display:flex;flex-direction:row;justify-content: space-evenly;">
+		<textarea id="text" style="width:45vw;height:45vh" ></textarea>
+		<pre id="code" class="language-cs" style=""></pre>
+		<script>
+			textarea=document.getElementById("text");
+			codearea=document.getElementById("code");
+			textarea.addEventListener("input", x=>{
+				codearea.innerHTML=textarea.value;//.split(">").join("&gt").split("<").join("&lt").split("\n").join("<br>");;
+				console.log(textarea.value)
+				hljs.highlightElement(codearea);
+			});
+			
+			textarea.addEventListener('keydown', e => {
+				if ( e.key === 'Tab' && !e.shiftKey ) {
+					document.execCommand('insertText', false, "    ");
+					e.preventDefault();
+					return false;
+				}		
+			});
+		</script>
+	 </body>
+ </html>

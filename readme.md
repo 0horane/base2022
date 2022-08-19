@@ -18,3 +18,13 @@
 
 ##### Proyecto
 * [Clase 18/3](proyecto/3-10.md)
+
+
+TODO: 
+Normalization cards (https://drive.google.com/file/d/1FWMZzDcnhAELolB5Lsjuq3iBhnkJS2lk/view)
+Entity relationship cards
+Database Function Cards
+OOP theory cards from beginning of year
+vs2019 npp dark theme
+File management cards c#
+https://estudioenba.buenosaires.gob.ar/articulos/view/Noticias/32

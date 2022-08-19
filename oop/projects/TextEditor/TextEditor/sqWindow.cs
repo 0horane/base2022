@@ -166,6 +166,13 @@ namespace TextEditor
 
         }
 
+        public void dlltestRunCommand(AConsole.INPUT_RECORD pkey)
+        {
+
+            testrender();
+
+        }
+
         public void init() {
             Console.Write(string.Concat(Enumerable.Repeat(new string(' ', width) + tab.Newlinechar, height )));
             tab.add("");

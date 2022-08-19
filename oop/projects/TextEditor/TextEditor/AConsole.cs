@@ -28,7 +28,7 @@ namespace TextEditor
         //https://github.com/SiTox/07-SK-K-PM/blob/master/PacMan/KeyPressed.cs
         //Data structure for inputs
         [StructLayout(LayoutKind.Sequential)]
-        private struct INPUT_RECORD
+        public struct INPUT_RECORD
         {
             public ushort EventType;
             public EVENT_RECORD Event;
@@ -37,7 +37,7 @@ namespace TextEditor
 
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct KEY_EVENT_RECORD
+        public struct KEY_EVENT_RECORD
         {
             public uint_coord bKeyDown;
             public ushort wRepeatCount;
@@ -47,7 +47,7 @@ namespace TextEditor
             public uint dwControlKeyState;
         }
         [StructLayout(LayoutKind.Sequential)]
-        private struct MOUSE_EVENT_RECORD
+        public struct MOUSE_EVENT_RECORD
         {
             public uint_coord dwMousePosition;
             public ushort dwButtonState;
@@ -55,22 +55,22 @@ namespace TextEditor
             public ushort dwEventFlags;
         }
         [StructLayout(LayoutKind.Sequential)]
-        private struct WINDOW_BUFFER_SIZE_RECORD
+        public struct WINDOW_BUFFER_SIZE_RECORD
         {
             public uint_coord dwSize;
         }
-        private struct MENU_EVENT_RECORD
+        public struct MENU_EVENT_RECORD
         {
             public uint_coord dwCommandId;
         }
-        private struct FOCUS_EVENT_RECORD
+        public struct FOCUS_EVENT_RECORD
         {
             public uint_coord bSetFocus;
         }
 
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct COORD
+        public struct COORD
         {
             public short X;
             public short Y;
@@ -80,7 +80,7 @@ namespace TextEditor
         //being a 0. and if i add a padding parameter it gets filled in the
         //next's stead. so this ridiculous workaround will do for now
         [StructLayout(LayoutKind.Explicit)]
-        private struct uint_coord
+        public struct uint_coord
         {
             [FieldOffset(0)]
             public uint i;
@@ -89,7 +89,7 @@ namespace TextEditor
         }
 
         [StructLayout(LayoutKind.Explicit)]
-        struct EVENT_RECORD
+        public struct EVENT_RECORD
         {
             [FieldOffset(0)]
             public KEY_EVENT_RECORD KeyEvent;
@@ -137,40 +137,49 @@ namespace TextEditor
 
 
 
-        public static void ReadInputs(uint howmany)
+        public static INPUT_RECORD[] ReadInputs(uint howmany)
         {
             //Console.SetCursorPosition(0, 0);
-            WriteLine("\u001b[34;45;9m\nsegjkhlsfjklgjkdfhskjsdglkuhdfskldgkhdfghuksdkulbsnilbhgvhblj,gsb\u001b[0m");
+            //WriteLine("\u001b[34;45;9m\nsegjkhlsfjklgjkdfhskjsdglkuhdfskldgkhdfghuksdkulbsnilbhgvhblj,gsb\u001b[0m");
             int nRead = 0;
             INPUT_RECORD[] iRecord = new INPUT_RECORD[howmany];
             if (ReadConsoleInput(stdIn, iRecord, (int)howmany, out nRead))
             {
-                foreach (INPUT_RECORD record in iRecord)
+                return iRecord;
                 {
-                    switch (record.EventType)
+                    /*
+                    foreach (INPUT_RECORD record in iRecord)
                     {
-                        case 0:
-                            break;
-                        case 1:
-                            Write($"key  down:{record.Event.KeyEvent.bKeyDown.i} rep:{record.Event.KeyEvent.wRepeatCount} vsc:{record.Event.KeyEvent.wVirtualScanCode} vkc:{record.Event.KeyEvent.wVirtualKeyCode} char:{record.Event.KeyEvent.UnicodeChar} cks:{record.Event.KeyEvent.dwControlKeyState}");
-                            break;
-                        case 2:
-                            Write($"Mouse state:{record.Event.MouseEvent.dwButtonState} cks:{record.Event.MouseEvent.dwControlKeyState} flags:{record.Event.MouseEvent.dwEventFlags} x:{record.Event.MouseEvent.dwMousePosition.c.X} y:{record.Event.MouseEvent.dwMousePosition.c.Y}");
-                            break;
-                        case 4:
-                            Write($"Window x:{record.Event.WindowBufferSizeEvent.dwSize.c.X} y:{record.Event.WindowBufferSizeEvent.dwSize.c.Y}");
-                            break;
-                        case 16:
-                            Write($"focus {record.Event.FocusEvent.bSetFocus.i}");
-                            break;
-                        default:
-                            Write($"on goddd  {record.EventType}");
-                            break;
+                        switch (record.EventType)
+                        {
+                            case 0:
+                                break;
+                            case 1:
+                                Write($"key  down:{record.Event.KeyEvent.bKeyDown.i} rep:{record.Event.KeyEvent.wRepeatCount} vsc:{record.Event.KeyEvent.wVirtualScanCode} vkc:{record.Event.KeyEvent.wVirtualKeyCode} char:{record.Event.KeyEvent.UnicodeChar} cks:{record.Event.KeyEvent.dwControlKeyState}");
+                                break;
+                            case 2:
+                                Write($"Mouse state:{record.Event.MouseEvent.dwButtonState} cks:{record.Event.MouseEvent.dwControlKeyState} flags:{record.Event.MouseEvent.dwEventFlags} x:{record.Event.MouseEvent.dwMousePosition.c.X} y:{record.Event.MouseEvent.dwMousePosition.c.Y}");
+                                break;
+                            case 4:
+                                Write($"Window x:{record.Event.WindowBufferSizeEvent.dwSize.c.X} y:{record.Event.WindowBufferSizeEvent.dwSize.c.Y}");
+                                break;
+                            case 16:
+                                Write($"focus {record.Event.FocusEvent.bSetFocus.i}");
+                                break;
+                            default:
+                                Write($"on goddd  {record.EventType}");
+                                break;
+                        }
+
                     }
-                    
+                    */
                 }
-            } 
-            
+
+            } else
+            {
+                return iRecord;
+            }
+
         }
     }
 }
