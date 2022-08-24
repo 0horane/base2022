@@ -3,18 +3,19 @@
 	 <head>
 		<meta charset="UTF-8" />
 		<title>Document</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/atom-one-dark-reasonable.min.css" integrity="sha512-RwXJS3k4Z0IK6TGoL3pgQlA9g2THFhKL7z9TYWdAI8u6xK0AUuMWieJuWgTRayywC9A94ifUj1RzjDa1NIlUIg==" crossorigin="anonymous" referrerpolicy="no-referrer" />-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/atom-one-light.min.css" integrity="sha512-o5v54Kh5PH0dgnf9ei0L+vMRsbm5fvIvnR/XkrZZjN4mqdaeH7PW66tumBoQVIaKNVrLCZiBEfHzRY4JJSMK/Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
 
 	 </head>
 	 <body style="display:flex;flex-direction:row;justify-content: space-evenly;">
 		<textarea id="text" style="width:45vw;height:45vh" ></textarea>
-		<pre id="code" class="language-cs" style=""></pre>
+		<pre id="code" class="language-sql" style="text-align:left;"></pre>
 		<script>
 			textarea=document.getElementById("text");
 			codearea=document.getElementById("code");
 			textarea.addEventListener("input", x=>{
-				codearea.innerHTML=textarea.value;//.split(">").join("&gt").split("<").join("&lt").split("\n").join("<br>");;
+				codearea.innerHTML=textarea.value;
 				console.log(textarea.value)
 				hljs.highlightElement(codearea);
 			});
