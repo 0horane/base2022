@@ -1,11 +1,11 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 //using System.Reflection;
 
-namespace Tarea005
+namespace Ejer008
 {
     internal static class Input
     {
@@ -21,10 +21,10 @@ namespace Tarea005
             string prompt = "Ingrese un numero: ",
             string failprompt = "Eso no es un Numero. Ingrese un numero: ",
             Func<int, bool>? condition = null,
-            string conditionfail = "Ese nÃºmero no es valido. Ingrese un numero: ") 
+            string conditionfail = "Ese número no es valido. Ingrese un numero: ")
         {
             condition = condition ?? (x => true); //no se permite poner una funcion anonima como parametro por defecto.
-            
+
             int ipi;
             Console.WriteLine(prompt);
 
@@ -59,7 +59,7 @@ namespace Tarea005
             string prompt = "Ingrese un numero: ",
             string failprompt = "Eso no es un Numero. Ingrese un numero: ",
             Func<float, bool>? condition = null,
-            string conditionfail = "Ese nÃºmero no es valido. Ingrese un numero: ")
+            string conditionfail = "Ese número no es valido. Ingrese un numero: ")
         {
             condition = condition ?? (x => true); //no se permite poner una funcion anonima como parametro por defecto.
 
@@ -77,8 +77,6 @@ namespace Tarea005
             return ipi;
         }
 
-<<<<<<< HEAD
-=======
         public static string String(
             string prompt = "Ingrese un string: ",
             Func<string, bool>? condition = null,
@@ -99,7 +97,6 @@ namespace Tarea005
             return ipi;
         }
 
->>>>>>> f2f9350d1232a238b99d67c3959eda3bf8b019fb
 
     }
 }

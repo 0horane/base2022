@@ -5,39 +5,15 @@
     {
         static void Main(string[] args)
         {
-<<<<<<< HEAD
-            int cantautos = Input.Int(condition: (x) => x>=0);
-            int cantmotos = Input.Int(condition: (x) => x>=0);
-            int cantcamis = Input.Int(condition: (x) => x>=0);
-=======
             int cantautos = Input.Int("Cuantos autos quieres ingresar", condition: (x) => x>=0);
             int cantmotos = Input.Int("Cuantas motos quieres ingresar", condition: (x) => x>=0);
             int cantcamis = Input.Int("Cuantas camionetas quieres ingresar", condition: (x) => x>=0);
->>>>>>> f2f9350d1232a238b99d67c3959eda3bf8b019fb
             Vehiculo[] vehiculos = new Vehiculo[cantautos+cantmotos+cantcamis];
 
             for (int i = 0; i < vehiculos.Length; i++)
             {
                 if (i < cantautos)
                     vehiculos[i] = new Auto(
-<<<<<<< HEAD
-                        Input.Float("Cuanto pesa el auto?"),  
-                        Input.Int("Cual es la patente del auto?"),
-                        Input.Int("Cuantos asientos tiene?"));
-                 else if (i < cantautos + cantmotos)
-                    vehiculos[i] = new Moto(
-                        Input.Float("Cuanto pesa la moto?"),
-                        Input.Int("Cual es la patente de la moto?"),
-                        (Moto.TipoDeMoto)Input.Int("De que tipo es? (0: deportiva, 1: todo terreno, 2:urbana)", condition:(x) => x == 0 || x == 1 || x == 2 ));
-                else 
-                    vehiculos[i] = new Camioneta(
-                        Input.Float("Cuanto pesa la camioneta?"),
-                        Input.Int("Cual es la patente de la camioneta?"),
-                        !(Input.Int("Tiene caja o baul (0: baul, 1: caja)?", condition: (x) => x is 0 or 1)==1));
-            }
-
-
-=======
                         Input.Float($"Cuanto pesa el {i + 1}° auto? (kg)"),
                         Input.String("Cual es la patente del auto?", (x) => int.TryParse(x, out _)),
                         Input.Int("Cuantos asientos tiene?"));
@@ -103,7 +79,6 @@
                 Console.WriteLine($"Hubieron {patparmoto} patentes pares de motos");
             if (cantcamis>0)
                 Console.WriteLine($"Hubieron {patimpcami} patentes impares de camionetas");
->>>>>>> f2f9350d1232a238b99d67c3959eda3bf8b019fb
         
         }
     }

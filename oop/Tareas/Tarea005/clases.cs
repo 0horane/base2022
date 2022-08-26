@@ -2,17 +2,10 @@ namespace Tarea005
 {
     public abstract class Vehiculo
     {
-<<<<<<< HEAD
-        float weight;
-        int license_plate;
-
-        public Vehiculo(float weight, int license_plate)
-=======
         public float weight;
         public string license_plate;
 
         public Vehiculo(float weight, string license_plate)
->>>>>>> f2f9350d1232a238b99d67c3959eda3bf8b019fb
         {
             this.weight = weight;
             this.license_plate = license_plate;
@@ -30,11 +23,7 @@ namespace Tarea005
             Urbana = 2
         }
 
-<<<<<<< HEAD
-        public Moto(float weight, int license_plate, TipoDeMoto tipo ) : base(weight, license_plate)
-=======
         public Moto(float weight, string license_plate, TipoDeMoto tipo ) : base(weight, license_plate)
->>>>>>> f2f9350d1232a238b99d67c3959eda3bf8b019fb
         {
             this.tipo = tipo;
         }
@@ -42,13 +31,8 @@ namespace Tarea005
 
     public class Auto : Vehiculo
     {
-<<<<<<< HEAD
-        int cantidadAsientos;
-        public Auto(float weight, int license_plate, int cantidadAsientos) : base(weight, license_plate)
-=======
         public int cantidadAsientos;
         public Auto(float weight, string license_plate, int cantidadAsientos) : base(weight, license_plate)
->>>>>>> f2f9350d1232a238b99d67c3959eda3bf8b019fb
         {
             this.cantidadAsientos = cantidadAsientos;
         }
@@ -57,11 +41,7 @@ namespace Tarea005
     public class Camioneta : Vehiculo
     {
         public bool tienecaja; //true= caja   false=baul
-<<<<<<< HEAD
-        public Camioneta(float weight, int license_plate, bool tienecaja) : base(weight, license_plate)
-=======
         public Camioneta(float weight, string license_plate, bool tienecaja) : base(weight, license_plate)
->>>>>>> f2f9350d1232a238b99d67c3959eda3bf8b019fb
         {
             this.tienecaja = tienecaja;
         }

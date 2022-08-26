@@ -77,8 +77,6 @@ namespace Tarea005
             return ipi;
         }
 
-<<<<<<< HEAD
-=======
         public static string String(
             string prompt = "Ingrese un string: ",
             Func<string, bool>? condition = null,
@@ -99,7 +97,6 @@ namespace Tarea005
             return ipi;
         }
 
->>>>>>> f2f9350d1232a238b99d67c3959eda3bf8b019fb
 
     }
 }
