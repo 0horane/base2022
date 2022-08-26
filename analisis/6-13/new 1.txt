@@ -1,0 +1,79 @@
+1) redactar ideas para hacer para las ideas para los camioners. 
+
+Las preguntas deben ser difierentes a las de nuestra empresa (poco tiempo, nivel educativo)
+
+Los roles de una empresa (a grandes rasgos)
+
+Piramidal:
+
+            Gerente general
+            
+            
+            
+            Apice estrategico:
+Staff de apollo -----|--- staff de asesoria
+                     |
+   Linea media Linea media Linea media
+   
+   
+Apice estrategica: 
+Linea media: Bajan las pautas entre los directores y los empreados. Toma deciciones y resuelve problemas que esiten en las empresas (ej lider de departamento)
+
+
+Conocer asesores. Para nosotrotros alcanza con saber si existen equipos legales, etc.
+
+
+Presentacion del informe:
+No exite formato estandarizaods del informe pero hay algunas cosas que si tienen que estar:
+ - Razon social
+ - Ubicacion geogarfica
+ - Objetivos 
+ - Volumebtes
+ 
+ 
+## CATEGORIAS DE RELEVAMIENTO
+por preguntas: 
+abiertas-> resupesta libre , utiles para las primeras entrvistas (reconocimiento). Dan mas info pero el analisis es mas complejo. 
+cerradas: pregunta con seleccion de respuestas dadas. Sirven para las ultimas entrevistas (relevamiento)
+
+ 
+Formas de relevamiento: piramidal - embudo - diamate
+piramidal: empieza cerrada y termina abierta
+embudo: empieza abierta y termina cerrada
+diamante: empiezan cerradas, pasan a abiertas y terminan otra vez cerradas
+
+Usuarios
+Operacionales: etepa relevamiento
+Supevisores: etepa relevamiento
+Ejecutivos: etepa reconocimiento
+
+tips de entrevisa:
+Antes: 
+saber que, quien, cuando, y dodne se hace. Se debe planificar bien el tiempo y lugar en anticipacion con la persona.
+
+Durante:
+presentasrse
+buen clima
+escuchar con atencion
+
+
+cuestionario: busca captar la informacion similar de muchas personas.
+
+Variables de tipo:
+1) nominal: word/excel
+2) ordinal 1-muy util, 2-util...
+3) intervalo/escala (de 1 a 10)
+
+
+problemas comunes:
+
+Indulgencia en respuestas
+el cuestionados siempre pone muy bueno para quedar bien
+
+Efecto halo: 
+las preguntas relacionadas llevan siempre las mismas respuestas
+
+Tendencia a centalizar: 
+Todo esta mas o menos
+
+DEBEN SER ANONIMAS PARA ASEGURARSE DE LA HONESTIDAD
