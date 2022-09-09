@@ -26,6 +26,7 @@ namespace TextEditor
 
         //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/how-to-create-a-c-cpp-union-by-using-attributes
         //https://github.com/SiTox/07-SK-K-PM/blob/master/PacMan/KeyPressed.cs
+        //https://github.com/Yostage/ccd/blob/master/ccd2/SuperConsole.cs
         //Data structure for inputs
         [StructLayout(LayoutKind.Sequential)]
         public struct INPUT_RECORD
@@ -36,16 +37,25 @@ namespace TextEditor
         }
 
 
-        [StructLayout(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Explicit, CharSet = CharSet.Unicode)]
         public struct KEY_EVENT_RECORD
         {
-            public uint_coord bKeyDown;
+            [FieldOffset(0), MarshalAs(UnmanagedType.Bool)]
+            public bool bKeyDown;
+            [FieldOffset(4), MarshalAs(UnmanagedType.U2)]
             public ushort wRepeatCount;
+            [FieldOffset(6), MarshalAs(UnmanagedType.U2)]
             public ushort wVirtualKeyCode;
+            [FieldOffset(8), MarshalAs(UnmanagedType.U2)]
             public ushort wVirtualScanCode;
-            public char UnicodeChar;
+            [FieldOffset(10)]
+            public char uChar;
+            [FieldOffset(12), MarshalAs(UnmanagedType.U4)]
             public uint dwControlKeyState;
+
+
         }
+
         [StructLayout(LayoutKind.Sequential)]
         public struct MOUSE_EVENT_RECORD
         {
@@ -86,6 +96,17 @@ namespace TextEditor
             public uint i;
             [FieldOffset(0)]
             public COORD c;
+        }
+
+
+
+        [StructLayout(LayoutKind.Explicit)]
+        public struct uChar
+        {
+            [FieldOffset(0)]
+            public char UnicodeChar;
+            [FieldOffset(0)]
+            public char AsciiChar;
         }
 
         [StructLayout(LayoutKind.Explicit)]
@@ -131,6 +152,7 @@ namespace TextEditor
             Console.WriteLine(istr);
         }
         public static void Write(string istr)
+        //https://stackoverflow.com/questions/5272177/console-writeline-slow
         {
             Console.Write(istr);
         }
@@ -148,30 +170,7 @@ namespace TextEditor
                 return iRecord;
                 {
                     /*
-                    foreach (INPUT_RECORD record in iRecord)
-                    {
-                        switch (record.EventType)
-                        {
-                            case 0:
-                                break;
-                            case 1:
-                                Write($"key  down:{record.Event.KeyEvent.bKeyDown.i} rep:{record.Event.KeyEvent.wRepeatCount} vsc:{record.Event.KeyEvent.wVirtualScanCode} vkc:{record.Event.KeyEvent.wVirtualKeyCode} char:{record.Event.KeyEvent.UnicodeChar} cks:{record.Event.KeyEvent.dwControlKeyState}");
-                                break;
-                            case 2:
-                                Write($"Mouse state:{record.Event.MouseEvent.dwButtonState} cks:{record.Event.MouseEvent.dwControlKeyState} flags:{record.Event.MouseEvent.dwEventFlags} x:{record.Event.MouseEvent.dwMousePosition.c.X} y:{record.Event.MouseEvent.dwMousePosition.c.Y}");
-                                break;
-                            case 4:
-                                Write($"Window x:{record.Event.WindowBufferSizeEvent.dwSize.c.X} y:{record.Event.WindowBufferSizeEvent.dwSize.c.Y}");
-                                break;
-                            case 16:
-                                Write($"focus {record.Event.FocusEvent.bSetFocus.i}");
-                                break;
-                            default:
-                                Write($"on goddd  {record.EventType}");
-                                break;
-                        }
-
-                    }
+                    
                     */
                 }
 

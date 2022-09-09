@@ -18,9 +18,9 @@ namespace TextEditor
             manager should contain the input handler 
         */
 
-        private int width, height, xoffset, yoffset, scrollY, lastwrappedlines = 0, skippedlines=4;
+        private int width, height, xoffset, yoffset, scrollY, lastwrappedlines = 0, skippedlines = 4;
         private Tab tab;
-        public sqWindow(Tab? tab = null, int ? width = null, int? height = null, int xoffset = 0, int yoffset = 0, int scrollY=0)
+        public sqWindow(Tab? tab = null, int? width = null, int? height = null, int xoffset = 0, int yoffset = 0, int scrollY = 0)
         {
             this.width = width ?? Console.WindowWidth;
             this.height = height ?? Console.WindowHeight;
@@ -28,6 +28,36 @@ namespace TextEditor
             this.yoffset = yoffset;
             this.tab = tab ?? new Tab();
             this.scrollY = scrollY;
+        }
+
+        public void delegateinput(AConsole.INPUT_RECORD pkey)
+        {
+            switch (pkey.EventType)
+            {
+                case 1: //KEY_EVENT 
+                    switch (pkey.Event.KeyEvent.uChar   )
+                    {
+                        default:
+                            break;
+                    }
+                    
+                    break;
+
+                case 2: //MOUSE_EVENT 
+                    break;
+
+                case 4: //WINDOW_BUFFER_SIZE_EVENT 
+                    break;
+
+                case 8: //MENU_EVENT 
+                    break;
+
+                case 16: //FOCUS_EVENT 
+                    break;
+
+                
+            }
+            testrender();
         }
 
         public void testrender()
@@ -166,12 +196,6 @@ namespace TextEditor
 
         }
 
-        public void dlltestRunCommand(AConsole.INPUT_RECORD pkey)
-        {
-
-            testrender();
-
-        }
 
         public void init() {
             Console.Write(string.Concat(Enumerable.Repeat(new string(' ', width) + tab.Newlinechar, height )));
