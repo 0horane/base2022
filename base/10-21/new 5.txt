@@ -1,0 +1,81 @@
+strella
+desnormalizado
+ocupa mas espacio
+
+copo de nieve
+la estrella se explota en mas tablas 
+esta normalizada (menos desnormalizada)
+Tablas dimensionales pueden tener relaciones con otras tablas dimensionales
+ahorra espacio
+niveles en tablas separadas
+
+
+
+## Cubos OLAP
+no se actualizan o borran, estan pensados solamente para hacer consultas. 
+
+
+MOLAP
+ejemplo de clase
+yo falté
+data mart pesa 10 gigas
+- requiere mucho espacio
++ las consultas van a ser mas rapidas
++ mejor ompresion de datos
+
+ROLAP
+se alamcena todo en la base de datos relacional origina;. 
+- es mucho mas lentas
++ no usa mas espacio
+
+
+HOLAP
+combinación de las 2
+
+# Operaciones
+slice (sacar plano de cubo)
+dice (cortar un cubo del cubo)
+consolidacion (agrupacion)
+rotacion(???)
+up(???)
+down(???)
+
+
+
+CLAVES DE NEGOCIO
+son las claves originales, pueden que esten en un formato no numerico incremental
+CLAVES SUPLENTE
+SOn una clave que se crea por si las de negocio no estan en un formato no numerico incremental que sirven como la clave primaria verdadera.
+
+
+
+
+Dimension
+Las tablas de dimensión estaban desnormalizados
+se unen a chechos por campo clave
+pocos registros (clientes, productos, almacenes, proovedores)
+
+
+Hechos
+muchos registros
+mereicas y medidas
+sin redundancia gracas a tablas de dimensiones
+ventas, compras mov. de contabilidad
+
+
+
+TIOPS DATAAWAREHOUSE
+
+de empresas (info nasiva)
+
+de operacion (tiempo real)
+
+data mart < data warehouse
+
+
+
+
+INSTRCCIONS
+1) Convertir RDB en modelo estrella  (borrar tablas herarquicas, eliminando datos no útiles)
+2) Importar todos los datos
+3) Abrir en excel -> Opciones -> complementos COM -> Power pivot -> Obtener datos externos -> de base de datos -> de sql server -> ... -> vista de diagrama <- tabla dinamica -> Insertar -> graficos recomendados
