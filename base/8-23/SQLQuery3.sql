@@ -5,15 +5,16 @@ SELECT *
 FROM INFORMATION_SCHEMA.COLUMNS
 --WHERE TABLE_NAME = N'ContactTitle'
 */
+
 /*
 CREATE PROCEDURE spMasemps
 AS
 BEGIN
-SELECT TOP(5) MAX(FirstName)+' '+MAX(LastName) AS Nombre, COUNT(OrderID) AS CantOrdenes 
-FROM Employees 
-INNER JOIN Orders ON Employees.EmployeeID = Orders.EmployeeID 
-GROUP BY Employees.EmployeeID
-ORDER BY CantOrdenes DESC
+	SELECT TOP(5) MAX(FirstName)+' '+MAX(LastName) AS Nombre, COUNT(OrderID) AS CantOrdenes 
+	FROM Employees 
+	INNER JOIN Orders ON Employees.EmployeeID = Orders.EmployeeID 
+	GROUP BY Employees.EmployeeID
+	ORDER BY CantOrdenes DESC
 END
 
 */
@@ -26,10 +27,10 @@ CREATE PROCEDURE spProdsOfCat
 @incatname nvarchar(15)
 AS
 BEGIN
-SELECT Products.* 
-FROM Products 
-INNER JOIN Categories ON Categories.CategoryID = Products.CategoryID 
-WHERE CategoryName = @incatname
+	SELECT Products.* 
+	FROM Products 
+	INNER JOIN Categories ON Categories.CategoryID = Products.CategoryID 
+	WHERE CategoryName = @incatname
 END
 */
 --exec spProdsOfCat 'Condiments'
@@ -42,9 +43,9 @@ CREATE PROCEDURE sp3queries
 @TerritoryID3 int
 AS
 BEGIN
-UPDATE Territories SET TerritoryDescription = 'Houston' WHERE TerritoryID = @TerritoryID1;
-DELETE FROM Territories WHERE TerritoryID = @TerritoryID2;
-INSERT INTO Territories VALUES(@TerritoryID3,'',1);
+	UPDATE Territories SET TerritoryDescription = 'Houston' WHERE TerritoryID = @TerritoryID1;
+	DELETE FROM Territories WHERE TerritoryID = @TerritoryID2;
+	INSERT INTO Territories VALUES(@TerritoryID3,'',1);
 END
 */
 --exec sp3queries 02184,29202,02377
@@ -53,7 +54,7 @@ END
 --exec spCountShipperRegions
 
 /*
-ALTER PROCEDURE spCountShipperRegions
+CREATE PROCEDURE spCountShipperRegions
 AS
 BEGIN
 SELECT * FROM (
